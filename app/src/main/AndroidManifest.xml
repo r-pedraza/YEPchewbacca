@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.raul.pedraza.yepchewaka" >
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -15,6 +16,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

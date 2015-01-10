@@ -1,5 +1,6 @@
 package es.raul.pedraza.yepchewaka;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -37,6 +38,9 @@ public class MainActivity2 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity2);
 
+        //Lanzamos intent para que abra la pantalla de login
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
