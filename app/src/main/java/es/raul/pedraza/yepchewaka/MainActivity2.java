@@ -2,6 +2,7 @@ package es.raul.pedraza.yepchewaka;
 
 import java.util.Locale;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,9 @@ public class MainActivity2 extends ActionBarActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        Intent intent = new Intent(this,LoginActivitie.class);
+        startActivity(intent);
 
     }
 
