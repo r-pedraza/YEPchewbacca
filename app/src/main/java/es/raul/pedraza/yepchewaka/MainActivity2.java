@@ -26,7 +26,7 @@ public class MainActivity2 extends ActionBarActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
-
+//nothing more
     /**
      * The {@link ViewPager} that will host the section contents.
      */
