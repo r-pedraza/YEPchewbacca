@@ -23,7 +23,8 @@
         android:hint="@string/hintPassword"
         android:layout_below="@+id/usernameField"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:password="true" />
 
     <Button
         android:layout_width="match_parent"
