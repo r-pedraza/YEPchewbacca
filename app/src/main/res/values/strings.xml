@@ -12,5 +12,7 @@
     <string name="hintNameLogin">UserName</string>
     <string name="hintPasswordLogin">Password</string>
     <string name="textLogin">Sing up</string>
+    <string name="title_activity_main_activity_tab">MainActivityTab</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
