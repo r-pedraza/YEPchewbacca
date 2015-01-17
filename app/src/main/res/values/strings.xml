@@ -13,5 +13,6 @@
     <string name="hintPassword">Password</string>
     <string name="LoginButton">LOGIN</string>
     <string name="signUpRes">Sign Up</string>
+    <string name="title_activity_main_activity_tab">MainActivityTab</string>
 
 </resources>
