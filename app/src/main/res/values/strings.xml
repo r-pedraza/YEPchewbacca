@@ -11,8 +11,12 @@
     <string name="login">Login</string>
     <string name="hintNameLogin">UserName</string>
     <string name="hintPasswordLogin">Password</string>
-    <string name="textLogin">Sing up</string>
     <string name="title_activity_main_activity_tab">MainActivityTab</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sing_up">SingUpActivity</string>
+    <string name="NameSingUp">Name</string>
+    <string name="PassSingUp">Password</string>
+    <string name="EmailSingUp">E-Mail</string>
+    <string name="etSinupLogin">SIng Up</string>
 
 </resources>

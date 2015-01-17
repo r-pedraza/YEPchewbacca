@@ -1,29 +1,24 @@
 package es.raul.pedraza.yepchewaka;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 
-public class LoginActivitie extends ActionBarActivity  {
-
+public class SingUpActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_activitie);
-
+        setContentView(R.layout.activity_sing_up);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login_activitie, menu);
+        getMenuInflater().inflate(R.menu.menu_sing_up, menu);
         return true;
     }
 
@@ -41,6 +36,4 @@ public class LoginActivitie extends ActionBarActivity  {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
