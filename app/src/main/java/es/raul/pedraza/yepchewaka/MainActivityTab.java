@@ -41,6 +41,11 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         setContentView(R.layout.activity_main_activity_tab);
 
         Intent intent = new Intent(this, LoginActivity.class);
+        /*Bandera que le dice a Login que Login será
+        el va a ser la ultima actividad*/
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //Limpia coleccion de actividades superpuestas
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();

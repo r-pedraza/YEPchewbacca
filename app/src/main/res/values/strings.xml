@@ -14,5 +14,12 @@
     <string name="LoginButton">LOGIN</string>
     <string name="signUpRes">Sign Up</string>
     <string name="title_activity_main_activity_tab">MainActivityTab</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="NameSignUp">Name</string>
+    <string name="PasswordSignUp">Password</string>
+    <string name="EmailSignUp">E-mail</string>
+    <string name="buttonSignUp">SIGN UP</string>
+    <string name="signupLogin">don\'t have an account? Sign Up </string>
+    <string name="signupTextLoginET">Sign Up</string>
 
 </resources>
