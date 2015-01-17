@@ -11,13 +11,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
@@ -43,8 +41,13 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         setContentView(R.layout.activity_main_activity_tab);
 
         //Intent
-        Intent intent= new Intent(this,LoginActivitie.class);
+        Intent intent= new Intent(this,LoginActivity.class);
+        //Crea una bandera que le dioce al log que el va a ser la ultima actividad.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //Borra la coleccion de avtividades superpuestas, es decir, por debajo.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+
 
 
 

@@ -7,15 +7,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
-public class LoginActivitie extends ActionBarActivity  {
-
+public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
+Button button;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_activitie);
+        button=(Button)findViewById(R.id.buttonLogin);
+
+        tv =(TextView)findViewById(R.id.textView);
+        tv.setOnClickListener(this);
 
     }
 
@@ -43,4 +49,15 @@ public class LoginActivitie extends ActionBarActivity  {
     }
 
 
-}
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case (R.id.textView):
+            Intent intent = new Intent(LoginActivity.this, SingUpActivity.class);
+            startActivity(intent);
+        }
+
+        }
+
+    }
+
