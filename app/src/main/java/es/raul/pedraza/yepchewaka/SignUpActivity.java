@@ -25,6 +25,9 @@ public class SignUpActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //Quitar actionBar
+        getSupportActionBar().hide();
+
         usernameField = (EditText) findViewById(R.id.usernameField);
         passwordField = (EditText) findViewById(R.id.passwordField);
         emailField = (EditText) findViewById(R.id.emailField);
@@ -64,7 +67,6 @@ public class SignUpActivity extends ActionBarActivity {
                 }
             });
         }
-
     }
 
     @Override
