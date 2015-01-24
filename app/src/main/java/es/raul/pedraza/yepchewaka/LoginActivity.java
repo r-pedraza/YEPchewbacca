@@ -40,8 +40,7 @@ Button button;
         aEmail=(EditText)findViewById(R.id.mail);
 
         //quitar barra actionBar
-        ActionBar actionBar=getActionBar();
-        actionBar.hide();
+        getSupportActionBar().hide();
 
 
     }

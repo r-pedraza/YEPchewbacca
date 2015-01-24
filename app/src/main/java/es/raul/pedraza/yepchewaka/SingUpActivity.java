@@ -31,6 +31,7 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.ETName);
         btn = (Button) findViewById(R.id.buttonSing);
         btn.setOnClickListener(this);
+        getSupportActionBar().hide();
 
     }
 
