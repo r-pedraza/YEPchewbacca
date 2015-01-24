@@ -1,40 +1,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="es.raul.pedraza.yepchewaka.LoginActivity">
+    android:layout_height="match_parent"
+    tools:context="es.raul.pedraza.yepchewaka.LoginActivity"
+    android:background="@drawable/background_fill">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background"
+        android:scaleType="fitStart"
+        android:contentDescription="@string/image_description"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/usernameField"
         android:hint="@string/hintUsername"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/passwordField"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="65dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/passwordField"
         android:hint="@string/hintPassword"
-        android:layout_below="@+id/usernameField"
+        android:password="true"
+        android:layout_above="@+id/buttonLogin"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:password="true" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/LoginButton"
         android:id="@+id/buttonLogin"
-        android:layout_below="@+id/passwordField"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,8 +47,33 @@
         android:text="@string/signupTextLoginET"
         android:id="@+id/signUpText"
         android:textSize="24sp"
+        android:layout_marginTop="106dp"
         android:layout_below="@+id/buttonLogin"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="119dp" />
+        android:layout_marginTop="32dp"
+        android:textSize="60sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/subtitle_name"
+        android:id="@+id/subtitle"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:layout_alignLeft="@string/signUpText"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
 </RelativeLayout>

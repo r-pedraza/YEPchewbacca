@@ -18,9 +18,10 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Quita el Action Bar
         getSupportActionBar().hide();
 
-        mSignUpTextView = (TextView)findViewById(R.id.signUpText);
+        mSignUpTextView = (TextView) findViewById(R.id.signUpText);
         mSignUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
