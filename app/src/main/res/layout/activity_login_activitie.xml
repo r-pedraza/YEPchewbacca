@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="es.raul.pedraza.yepchewaka.LoginActivity"
-    android:id="@+id/layoutLogin">
+    android:id="@+id/layoutLogin"
+    android:background="@drawable/background_fill">
 
     <ImageView
         android:layout_width="wrap_content"
