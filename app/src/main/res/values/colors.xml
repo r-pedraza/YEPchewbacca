@@ -4,7 +4,8 @@
 
 
     <color name="background">#55377C</color>
-
+    <color name="colorTitleLogin">#FFFFFF</color>
+    <color name="subtitleLogin">#FFFFFF</color>
 
 
 </resources>

@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="textSizeTextView">23sp</dimen>
+    <dimen name="sizeTextTitle">60sp</dimen>
+    <dimen name="subtitleLoginSize">23sp</dimen>
 </resources>
