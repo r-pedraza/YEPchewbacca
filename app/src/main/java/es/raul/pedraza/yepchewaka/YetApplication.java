@@ -6,7 +6,7 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 
 /**
- * Created by cesardominguez on 16/1/15.
+ * Created by raulpedraza on 16/1/15.
  */
 public class YetApplication extends Application {
 

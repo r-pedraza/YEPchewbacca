@@ -17,6 +17,7 @@
     <string name="NameSingUp">Name</string>
     <string name="PassSingUp">Password</string>
     <string name="EmailSingUp">E-Mail</string>
-    <string name="etSinupLogin">SIng Up</string>
+    <string name="etSinupLogin">Sing Up</string>
+    <string name="emailHint">E-mail</string>
 
 </resources>

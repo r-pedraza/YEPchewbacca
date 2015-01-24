@@ -1,18 +1,31 @@
 package es.raul.pedraza.yepchewaka;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 Button button;
     TextView tv;
+
+    private  static String TAG=LoginActivity.class.getName();
+
+
+    EditText aName, aPass, aEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +35,14 @@ Button button;
 
         tv =(TextView)findViewById(R.id.textView);
         tv.setOnClickListener(this);
+        aName=(EditText)findViewById(R.id.nameLogin);
+        aPass=(EditText)findViewById(R.id.passwordLogin);
+        aEmail=(EditText)findViewById(R.id.mail);
+
+        //quitar barra actionBar
+        ActionBar actionBar=getActionBar();
+        actionBar.hide();
+
 
     }
 
@@ -42,6 +63,8 @@ Button button;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+           
+
             return true;
         }
 
@@ -51,13 +74,44 @@ Button button;
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case (R.id.textView):
-            Intent intent = new Intent(LoginActivity.this, SingUpActivity.class);
-            startActivity(intent);
-        }
+                Intent intent = new Intent(LoginActivity.this, SingUpActivity.class);
+                startActivity(intent);
+                break;
+            case (R.id.buttonLogin):
+
+                Log.d(TAG, "Estoy en boton");
+
+                String name = aName.getText().toString().trim();
+                String pass = aPass.getText().toString().trim();
+
+                if (name.isEmpty() || pass.isEmpty()) {
+
+                    Toast.makeText(this, "No esta completado Alguno de los campos", Toast.LENGTH_SHORT).show();
+
+
+                } else {
+
+                    ParseUser.logInInBackground(name, pass, new LogInCallback() {
+                        @Override
+                        public void done(ParseUser parseUser, ParseException e) {
+                            if (parseUser != null) {
+                                Intent intent = new Intent(LoginActivity.this, MainActivityTab.class);
+                                startActivity(intent);
+                            } else {
+
+
+                            }
+                        }
+                    });
+                    break;
+
+                }
 
         }
+    }
 
     }
 

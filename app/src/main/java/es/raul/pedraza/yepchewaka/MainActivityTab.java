@@ -17,6 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -39,14 +43,17 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
+        ParseUser currenUser = ParseUser.getCurrentUser();
+        if(currenUser==null){
+            //Intent
+            Intent intent= new Intent(this,LoginActivity.class);
+            //Crea una bandera que le dioce al log que el va a ser la ultima actividad.
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //Borra la coleccion de avtividades superpuestas, es decir, por debajo.
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
 
-        //Intent
-        Intent intent= new Intent(this,LoginActivity.class);
-        //Crea una bandera que le dioce al log que el va a ser la ultima actividad.
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //Borra la coleccion de avtividades superpuestas, es decir, por debajo.
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        }
 
 
 
@@ -106,7 +113,9 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+                ParseUser.logOut();
+                Intent intent=new Intent(MainActivityTab.this,LoginActivity.class);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
