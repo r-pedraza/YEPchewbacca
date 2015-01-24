@@ -19,25 +19,23 @@ import com.parse.ParseUser;
 
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
-Button button;
+    Button button;
     TextView tv;
-
-    private  static String TAG=LoginActivity.class.getName();
-
-
     EditText aName, aPass, aEmail;
+
+    private static String TAG = LoginActivity.class.getName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_activitie);
-        button=(Button)findViewById(R.id.buttonLogin);
-
-        tv =(TextView)findViewById(R.id.textView);
+        button = (Button) findViewById(R.id.buttonLogin);
+        button.setOnClickListener(this);
+        tv = (TextView) findViewById(R.id.textView);
         tv.setOnClickListener(this);
-        aName=(EditText)findViewById(R.id.nameLogin);
-        aPass=(EditText)findViewById(R.id.passwordLogin);
-        aEmail=(EditText)findViewById(R.id.mail);
+        aName = (EditText) findViewById(R.id.nameLogin);
+        aPass = (EditText) findViewById(R.id.passwordLogin);
 
         //quitar barra actionBar
         getSupportActionBar().hide();
@@ -62,7 +60,7 @@ Button button;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-           
+
 
             return true;
         }
@@ -112,5 +110,5 @@ Button button;
         }
     }
 
-    }
+}
 

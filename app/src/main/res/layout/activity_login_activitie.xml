@@ -13,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:background="@drawable/background"
-        android:scaleType="fitStart"/>
+        android:scaleType="fitStart"
+        android:contentDescription="@string/imageDescription"/>
 
     <Button
         android:layout_width="match_parent"
@@ -54,18 +55,6 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/textSizeTextView" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/mail"
-        android:layout_below="@+id/passwordLogin"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/emailHint" />
-
-
 
 
 </RelativeLayout>
