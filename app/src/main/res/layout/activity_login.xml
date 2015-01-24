@@ -70,7 +70,6 @@
         android:id="@+id/subtitle"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
         android:layout_alignLeft="@string/signUpText"
         android:textSize="20sp"
         android:textColor="@android:color/white"
