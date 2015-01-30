@@ -1,17 +1,27 @@
 package es.raul.pedraza.yepchewaka;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 
 public class LoginActivity extends ActionBarActivity {
 
     protected TextView mSignUpTextView;
+
+    private EditText usernameField;
+    private EditText passwordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +30,9 @@ public class LoginActivity extends ActionBarActivity {
 
         //Quita el Action Bar
         getSupportActionBar().hide();
+
+        usernameField = (EditText) findViewById(R.id.usernameField);
+        passwordField = (EditText) findViewById(R.id.passwordField);
 
         mSignUpTextView = (TextView) findViewById(R.id.signUpText);
         mSignUpTextView.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +44,35 @@ public class LoginActivity extends ActionBarActivity {
         });
     }
 
+    public void entrarLogin (View view){
+        //con el trim quita los espacios entre las palabras
+        String sUsername = usernameField.getText().toString().trim();
+        String spassword = passwordField.getText().toString().trim();
+        /*if (ParseUser.getCurrentUser()!=null){
+            ParseUser.logOut();
+        }*/
+
+        //Ventana de progreso
+        final ProgressDialog dialog = ProgressDialog.show(this,
+                getString(R.string.login_message),
+                getString(R.string.waiting_message), true);
+
+        ParseUser.logInInBackground(sUsername, spassword, new LogInCallback() {
+            @Override
+            public void done(ParseUser parseUser, ParseException e) {
+                if (parseUser!=null){
+                    Intent intent = new Intent(LoginActivity.this,MainActivityTab.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                    dialog.dismiss(); //oculto en ventana
+                }else{
+                    Toast.makeText(LoginActivity.this, "Ups", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.ParseUser;
+
 import java.util.Locale;
 
 
@@ -40,13 +42,15 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        if (ParseUser.getCurrentUser() == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
         /*Bandera que le dice a Login que Login será
         el va a ser la ultima actividad*/
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //Limpia coleccion de actividades superpuestas
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //Limpia coleccion de actividades superpuestas
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -99,6 +103,17 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.sign_out) {
+            ParseUser.logOut();
+            Intent i = new Intent(
+                    MainActivityTab.this, LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+
             return true;
         }
 
