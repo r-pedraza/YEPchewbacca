@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -116,6 +117,16 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
                 ParseUser.logOut();
                 Intent intent=new Intent(MainActivityTab.this,LoginActivity.class);
                 return true;
+        }
+
+        if(id==R.id.singOut){
+
+            ParseUser.logOut();
+            Intent intent=new Intent(MainActivityTab.this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            return  true;
         }
 
         return super.onOptionsItemSelected(item);

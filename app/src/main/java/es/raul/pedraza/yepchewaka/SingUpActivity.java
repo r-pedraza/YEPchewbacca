@@ -1,5 +1,6 @@
 package es.raul.pedraza.yepchewaka;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -66,11 +67,9 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
         String aPass = pass.getText().toString().trim();
         String aMail = email.getText().toString().trim();
 
-        if (aName.isEmpty() || aMail.isEmpty() || aPass.isEmpty()) {
+        if (checkEmotyFile(aName, aPass, aMail)) {
 
-            Toast.makeText(this, "No esta completado el campo usuario", Toast.LENGTH_SHORT).show();
-
-
+            createErrorDialog(getString(R.string.empty_field_message));
         } else {
 
             ParseUser user = new ParseUser();
@@ -96,7 +95,7 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
                                                 startActivity(intent);
 
                                             } else {
-                                                Toast.makeText(SingUpActivity.this, "Error Singup()", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SingUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
 
                                             }
@@ -109,6 +108,31 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
 
 
         }
+    }
+
+    /**
+     * Método que comprueba si los datos estan o no correctos
+     * @param aName
+     * @param aPass
+     * @param aMail
+     * @return
+     */
+    private boolean checkEmotyFile(String aName, String aPass, String aMail) {
+        return aName.isEmpty() ||
+                aMail.isEmpty() ||
+                aPass.isEmpty();
+    }
+
+    /**
+     * Método pque recoge un mensaje por parametro.
+     * @param message
+     */
+    private void createErrorDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SingUpActivity.this);
+        builder.setMessage(message);
+        builder.setTitle(getString(R.string.errorMessageSinUp));
+        builder.setPositiveButton(android.R.string.ok,null);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
     }
 }
 

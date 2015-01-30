@@ -1,6 +1,7 @@
 package es.raul.pedraza.yepchewaka;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 
-public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
+public class  LoginActivity extends ActionBarActivity implements View.OnClickListener {
     Button button;
     TextView tv;
     EditText aName, aPass, aEmail;
@@ -84,6 +85,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 String name = aName.getText().toString().trim();
                 String pass = aPass.getText().toString().trim();
 
+
+
                 if (name.isEmpty() || pass.isEmpty()) {
 
                     Toast.makeText(this, "No esta completado Alguno de los campos", Toast.LENGTH_SHORT).show();
@@ -91,12 +94,17 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
                 } else {
 
+                    final ProgressDialog dialog=ProgressDialog.show(this,getString(R.string.logginMessage),
+                            getString(R.string.waitingMessage),true);
+
                     ParseUser.logInInBackground(name, pass, new LogInCallback() {
                         @Override
                         public void done(ParseUser parseUser, ParseException e) {
                             if (parseUser != null) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivityTab.class);
                                 startActivity(intent);
+                                dialog.dismiss();
+
                             } else {
 
 

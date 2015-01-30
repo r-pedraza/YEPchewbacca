@@ -22,5 +22,12 @@
     <string name="imageDescription">Yep Background image</string>
     <string name="subtitleTextLogin">Chewbacca</string>
     <string name="textTitleLogin">YEP!</string>
+    <string name="empty_field_message">Campos de login no coinciden</string>
+    <string name="errorMessageSinUp">Error</string>
+    <string name="action_logout">Logout</string>
+    <string name="logginMessage">Loguenado</string>
+    <string name="waitingMessage">Por favor,espere.</string>
+
+
 
 </resources>
