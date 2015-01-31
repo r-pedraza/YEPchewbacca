@@ -28,8 +28,8 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
         name = (EditText) findViewById(R.id.ETName);
-        pass = (EditText) findViewById(R.id.ETName);
-        email = (EditText) findViewById(R.id.ETName);
+        pass = (EditText) findViewById(R.id.ETPass);
+        email = (EditText) findViewById(R.id.ETMail);
         btn = (Button) findViewById(R.id.buttonSing);
         btn.setOnClickListener(this);
         getSupportActionBar().hide();
