@@ -19,7 +19,7 @@
     <string name="PasswordSignUp">Password</string>
     <string name="EmailSignUp">E-mail</string>
     <string name="buttonSignUp">SIGN UP</string>
-    <string name="signupLogin">don\'t have an account? Sign Up </string>
+    <string name="signupLogin">Don\'t have an account? Sign Up </string>
     <string name="signupTextLoginET">Sign Up</string>
     <string name="image_description">Yep Background Image</string>
     <string name="signUpText">signUpText</string>
