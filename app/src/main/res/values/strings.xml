@@ -11,7 +11,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="hintUsername">Username</string>
     <string name="hintPassword">Password</string>
-    <string name="LoginButton">LOGIN</string>
+    <string name="LoginButton">SIGN IN</string>
     <string name="signUpRes">Sign Up</string>
     <string name="title_activity_main_activity_tab">MainActivityTab</string>
     <string name="title_activity_sign_up">SignUpActivity</string>

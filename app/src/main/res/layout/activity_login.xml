@@ -86,7 +86,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="entrarLogin"
-        android:layout_below="@+id/editTextlayout"/>
+        android:layout_below="@+id/editTextlayout"
+        android:background="@drawable/button_custom"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:textSize="13sp"
+        android:textColor="@color/text_color"/>
 
     <TextView
         android:layout_width="wrap_content"
