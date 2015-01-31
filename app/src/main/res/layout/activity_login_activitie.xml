@@ -45,7 +45,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/subtitle"
-        android:id="@+id/editTextLayout">
+        android:id="@+id/editTextLayout"
+        android:layout_marginTop="@dimen/login_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/login_horizontal_padding"
+        android:paddingRight="@dimen/login_horizontal_padding"
+        android:paddingTop="@dimen/login_vertical_padding"
+        android:paddingBottom="@dimen/login_vertical_padding">
+
 
         <EditText
             android:layout_width="match_parent"
@@ -54,13 +63,16 @@
             android:hint="@string/hintNameLogin"
             android:layout_alignParentStart="true"
             android:layout_above="@+id/passwordLogin"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:textColorHint="@color/generic"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/passwordLogin"
             android:hint="@string/hintPasswordLogin"
+            android:textColorHint="@color/generic"
+
             />
 
 
@@ -83,11 +95,13 @@
         android:text="@string/etSinupLogin"
         android:id="@+id/textView"
         android:textSize="@dimen/textSizeTextView"
-        android:layout_centerVertical="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:layout_below="@+id/buttonLogin"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="49dp" />
 
 
 </RelativeLayout>
