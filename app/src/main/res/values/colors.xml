@@ -6,6 +6,9 @@
     <color name="background">#55377C</color>
     <color name="colorTitleLogin">#FFFFFF</color>
     <color name="subtitleLogin">#FFFFFF</color>
+    <color name="singUpNameColor">#FFFFFF</color>
+    <color name="singUpPassColor">#FFFFFF</color>
+    <color name="singUpMailColor">#FFFFFF</color>
 
 
 </resources>
