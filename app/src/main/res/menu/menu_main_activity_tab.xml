@@ -6,4 +6,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/singOut" android:title="@string/action_logout"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/add_friend" android:title="@string/menuAñadirEditarAmigosMenuActivityTab"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivityTab"
-            android:label="@string/title_activity_main_activity_tab" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +28,18 @@
         <activity
             android:name=".SingUpActivity"
             android:label="@string/title_activity_sing_up"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".LoginActivity" >
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".EditFriendsActivity"
+            android:label="@string/title_activity_edit_friends"
+            android:parentActivityName=".MainActivityTab"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="es.raul.pedraza.yepchewaka.MainActivityTab"
+                />
         </activity>
     </application>
 

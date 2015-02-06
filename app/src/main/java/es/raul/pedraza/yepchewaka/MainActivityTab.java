@@ -58,6 +58,8 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.ic_launcher);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
@@ -123,6 +125,12 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             return  true;
+        }
+        //Accederemos a la calse para editar añadir un menu
+        if(id==R.id.add_friend){
+        Intent intent = new Intent(this,EditFriendsActivity.class);
+            startActivity(intent);
+
         }
 
         return super.onOptionsItemSelected(item);
