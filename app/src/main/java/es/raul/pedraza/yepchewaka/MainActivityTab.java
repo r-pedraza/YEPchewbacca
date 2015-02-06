@@ -50,6 +50,11 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         }
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
+
+        //Ponemos icono
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.ic_launcher);
+
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
@@ -101,9 +106,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-
-        if (id == R.id.sign_out) {
+        } else if (id == R.id.sign_out) {
             ParseUser.logOut();
             Intent i = new Intent(
                     MainActivityTab.this, LoginActivity.class);
@@ -112,6 +115,10 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             startActivity(i);
 
             return true;
+        } else if (id == R.id.action_edit_friends){
+            Intent intent = new
+                    Intent(this, EditFriendsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

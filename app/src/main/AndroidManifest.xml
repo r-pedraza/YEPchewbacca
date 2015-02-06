@@ -29,7 +29,16 @@
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
             android:parentActivityName=".LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".EditFriendsActivity"
+            android:label="@string/title_activity_edit_friends"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivityTab" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
         </activity>
     </application>
 

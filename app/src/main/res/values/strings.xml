@@ -30,5 +30,8 @@
     <string name="waiting_message">Please, wait...</string>
     <string name="textViewFragment">Not messages</string>
     <string name="addFriends">Add friends</string>
+    <string name="addFriendsMenu">Edit Friends</string>
+    <string name="title_activity_edit_friends">EditFriendsActivity</string>
+    <string name="usersNoExit">No users</string>
 
 </resources>
