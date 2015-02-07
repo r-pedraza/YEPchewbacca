@@ -2,62 +2,54 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="es.raul.pedraza.yepchewaka.SignUpActivity"
-    android:background="@drawable/background_fill">
+    style="@style/AuthBackground">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/background"
-        android:scaleType="fitStart"
-        android:contentDescription="@string/image_description" />
+        android:id="@+id/imageView"
+        style="@style/AuthBackgroundImage" />
+
+    <TextView
+        android:text="@string/app_name"
+        android:id="@+id/title"
+        style="@style/AuthTitle" />
+
+    <TextView
+        android:text="@string/subtitle_name"
+        android:id="@+id/subtitle"
+        style="@style/AuthSubtitle" />
+
+    <LinearLayout
+        android:id="@+id/editTextlayout"
+        style="@style/AuthFieldContainer">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:inputType="text"
         android:id="@+id/usernameField"
         android:hint="@string/NameSignUp"
-        android:textColorHint="@android:color/white"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp"
-        android:textColor="@android:color/white" />
+        style="@style/AuthEditText">
+        <requestFocus/>
+    </EditText>
+
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/passwordField"
         android:hint="@string/PasswordSignUp"
-        android:layout_below="@+id/usernameField"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white" />
+        style="@style/AuthEditText"/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:id="@+id/emailField"
         android:hint="@string/EmailSignUp"
-        android:layout_below="@+id/passwordField"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white" />
+        style="@style/AuthEditText"/>
+
+    </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/buttonSignUp"
         android:id="@+id/signUpButton"
-        android:layout_below="@+id/emailField"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="82dp"
-        android:onClick="signUp"/>
+        android:layout_below="@+id/editTextlayout"
+        android:onClick="signUp"
+        style="@style/AuthButton"/>
 
 </RelativeLayout>
