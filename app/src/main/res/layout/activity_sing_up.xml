@@ -3,62 +3,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="es.raul.pedraza.yepchewaka.SingUpActivity"
-    android:background="@drawable/background_fill">
+    android:background="@drawable/background_fill"
+    style="@style/AuthBackground">
+
+    <ImageView
+        android:id="@+id/imageViewLogin"
+        style="@style/AuthBackgroundImage" />
+
+    <TextView
+        android:id="@+id/subTitleLogin"
+        android:text="@string/textTitleLogin"
+        style="@style/AuthTitle" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:text="@string/subtitleTextLogin"
+        style="@style/AuthSubTitle" />
+    <LinearLayout
+        android:id="@+id/editTextLayout"
+        style="@style/AuthFillContainer">
+        <EditText
+
+            android:inputType="textPersonName"
+            android:id="@+id/ETName"
+            android:hint="@string/NameSingUp"
+            style="@style/AuthEditTextName">
+            <requestFocus/>
+            </EditText>
+
+        <EditText
+
+            android:inputType="textPassword"
+            android:id="@+id/ETPass"
+            android:hint="@string/PassSingUp"
+            style="@style/AuthEditTextName"/>
+
+        <EditText
+
+            android:inputType="textEmailAddress"
+            android:id="@+id/ETMail"
+            android:hint="@string/EmailSingUp"
+            style="@style/AuthEditTextName"/>
+
+        </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/imageViewLogin"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/background"
-        android:scaleType="fitStart"
-        android:contentDescription="@string/imageDescription" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextLayout"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/button_divider"
+        android:contentDescription="@string/ButtonDivideSingUp"
+        android:id="@+id/divideButton"/>
+
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SIng Up"
+        android:text="@string/buttonSIngUpText"
         android:id="@+id/buttonSing"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        style="@style/AuthButton"
+        android:layout_below="@+id/editTextLayout"
+        android:layout_toLeftOf="@+id/divideButton"
+        android:layout_marginRight="0dp"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/ETName"
-        android:hint="@string/NameSingUp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="36dp"
-        android:textColor="@color/singUpNameColor" />
+    />
+    <Button
+        android:text="@string/buttonSingUpCancelText"
+        android:id="@+id/buttonSingCancel"
+        style="@style/AuthButton"
+        android:layout_below="@+id/editTextLayout"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/ETPass"
-        android:layout_below="@+id/ETName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:hint="@string/PassSingUp"
-        android:textColor="@color/singUpPassColor" />
+        android:layout_toRightOf="@+id/divideButton"
+        android:layout_marginLeft="0dp"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/ETMail"
-        android:layout_below="@+id/ETPass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:hint="@string/EmailSingUp"
-        android:textColor="@color/singUpMailColor" />
+
+        />
+
+
 
 
 </RelativeLayout>

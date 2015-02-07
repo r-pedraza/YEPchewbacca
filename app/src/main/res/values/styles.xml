@@ -4,15 +4,71 @@
 
     <style name="_AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
-        <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
-
     </style>
 
-    <style name="ImageButtonAppTheme" parent="android:Widget.ImageButton">
-        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+    <style name="AuthBackground">
+        <item name="android:background">@drawable/background_fill</item>
+    </style>
+    <style name="AuthBackgroundImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:background">@drawable/background</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:contentDescription">@string/imageDescription</item>
     </style>
 
+    <style name="AuthTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sizeTextTitle</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/colorTitleLogin</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
 
+    <style name="AuthSubTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/subtitleLoginSize</item>
+        <item name="android:layout_below">@+id/subTitleLogin</item>
+        <item name="android:layout_alignLeft">@+id/subTitleLogin</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/subtitleLogin</item>
+    </style>
 
+    <style name="AuthFillContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_below">@+id/subtitle</item>
+        <item name="android:layout_marginTop">@dimen/login_vertical_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:paddingLeft">@dimen/login_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/login_horizontal_padding</item>
+        <item name="android:paddingTop">@dimen/login_vertical_padding</item>
+        <item name="android:paddingBottom">@dimen/login_vertical_padding</item>
+    </style>
+
+    <style name="AuthEditTextName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_above">@+id/passwordLogin</item>
+        <item name="android:textColorHint">@color/generic</item>
+    </style>
+
+    <style name="AuthButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_custom</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/buttonLoginColor</item>
+    </style>
 
 </resources>

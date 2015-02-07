@@ -21,7 +21,7 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
 
 
     EditText name, pass, email;
-    Button btn;
+    Button btn,btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,8 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.ETMail);
         btn = (Button) findViewById(R.id.buttonSing);
         btn.setOnClickListener(this);
+        btnCancel=(Button)findViewById(R.id.buttonSingCancel);
+        btnCancel.setOnClickListener(this);
         getSupportActionBar().hide();
 
     }
@@ -61,9 +63,9 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-
-
-        String aName = name.getText().toString().trim();
+    switch (v.getId()) {
+        case(R.id.buttonSing):
+                String aName = name.getText().toString().trim();
         String aPass = pass.getText().toString().trim();
         String aMail = email.getText().toString().trim();
 
@@ -108,6 +110,12 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
 
 
         }
+            break;
+        case(R.id.buttonSingCancel):
+            finish();
+            break;
+
+    }
     }
 
     /**

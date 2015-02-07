@@ -4,93 +4,49 @@
     android:layout_height="wrap_content"
     tools:context="es.raul.pedraza.yepchewaka.LoginActivity"
     android:id="@+id/layoutLogin"
-    android:background="@drawable/background_fill">
+    style="@style/AuthBackground">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
         android:id="@+id/imageViewLogin"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/background"
-        android:scaleType="fitStart"
-        android:contentDescription="@string/imageDescription"
-        />
+        style="@style/AuthBackgroundImage" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/subTitleLogin"
-        android:textSize="@dimen/sizeTextTitle"
         android:text="@string/textTitleLogin"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorTitleLogin"
-        android:textStyle="bold"
-        android:layout_marginTop="32dp"/>
+        style="@style/AuthTitle" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/subtitle"
         android:text="@string/subtitleTextLogin"
-        android:textSize="@dimen/subtitleLoginSize"
-        android:layout_below="@+id/subTitleLogin"
-        android:layout_alignLeft="@+id/subTitleLogin"
-        android:layout_alignStart="@+id/subTitleLogin"
-        android:textStyle="bold"
-        android:textColor="@color/subtitleLogin" />
+        style="@style/AuthSubTitle" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/subtitle"
         android:id="@+id/editTextLayout"
-        android:layout_marginTop="@dimen/login_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@android:color/white"
-        android:paddingLeft="@dimen/login_horizontal_padding"
-        android:paddingRight="@dimen/login_horizontal_padding"
-        android:paddingTop="@dimen/login_vertical_padding"
-        android:paddingBottom="@dimen/login_vertical_padding">
+        style="@style/AuthFillContainer">
 
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/nameLogin"
             android:hint="@string/hintNameLogin"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/passwordLogin"
-            android:layout_alignParentLeft="true"
-            android:textColorHint="@color/generic"/>
+            style="@style/AuthEditTextName" >
+            <requestFocus/>
+            </EditText>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/passwordLogin"
             android:hint="@string/hintPasswordLogin"
-            android:textColorHint="@color/generic"
-            android:background="@drawable/apptheme_edit_text_holo_light"
+            style="@style/AuthEditTextName"
+            android:inputType="textEmailAddress"
 
             />
 
 
     </LinearLayout>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/login"
         android:id="@+id/buttonLogin"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        style="@style/AuthButton"
         android:layout_below="@+id/editTextLayout"
-        android:background="@drawable/button_custom"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:textSize="13sp"
-        android:textColor="@color/buttonLoginColor"
         />
 
 

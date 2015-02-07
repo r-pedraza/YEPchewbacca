@@ -31,5 +31,8 @@
     <string name="menuAñadirEditarAmigosMenuActivityTab">Añadir/editar amigos</string>
     <string name="title_activity_edit_friends">EditFriendsActivity</string>
     <string name="textViewActivityEditFriends">No existen usuarios</string>
+    <string name="buttonSIngUpText">Sing Up</string>
+    <string name="buttonSingUpCancelText">Cancel</string>
+    <string name="ButtonDivideSingUp">Button_divide</string>
 
 </resources>
