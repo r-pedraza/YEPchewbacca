@@ -106,4 +106,10 @@ public class SignUpActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //onClick del boton cancelar
+    public void cancelSignUp(View view) {
+
+        finish();
+    }
 }
