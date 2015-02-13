@@ -1,23 +1,37 @@
 package es.raul.pedraza.yepchewaka;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.parse.ParseUser;
 
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
+
+    private static final String TAG = MainActivityTab.class.getName();
+    private final static int TAKE_PHOTO_REQUEST = 0;
+    private final static int TAKE_VIDEO_REQUEST = 1;
+    private final static int PICK_PHOTO_REQUEST = 2;
+    private final static int PICK_VIDEO_REQUEST = 3;
+
+    Uri mMediaUri;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -27,6 +41,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+    //private String[] camera_choices = {"Haz una foto", "Haz un vídeo", "Elige una foto", "Elige un vídeo"};
     SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -119,9 +134,79 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             Intent intent = new
                     Intent(this, EditFriendsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.action_camera){
+            dialogCameraChoices();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Ventana dialogo para pedir que elegir al hacer foto
+    private void dialogCameraChoices() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setItems(R.array.camera_choices, mDialogListener());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private DialogInterface.OnClickListener mDialogListener() {
+
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which){
+                    case 0: 
+                        takePhoto();
+                        break;
+                    case 1: 
+                        
+                        takeVideo();
+                        break;
+                    case 2: 
+                        
+                        Log.d(TAG, "Elige una foto");
+                        break;
+                    case 3: 
+                        
+                        Log.d(TAG, "Elige un vídeo");
+                        break;
+                }
+            }
+        };
+    }
+
+    //Método que sacara la camara de fotos
+    private void takePhoto() {
+        Log.d(TAG, "Haz una foto");
+        Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        mMediaUri = FileUtilities.getOutputMediaFileUri(FileUtilities.MEDIA_TYPE_IMAGE);
+
+        if (mMediaUri == null){
+            Toast.makeText(this, "Error en el almacenamiento externo", Toast.LENGTH_LONG).show();
+        }
+        else{
+            takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mMediaUri);
+            startActivityForResult(takePhotoIntent, TAKE_PHOTO_REQUEST);
+        }
+
+    }
+
+    //Método que sacara la camara de video
+    private void takeVideo() {
+        Log.d(TAG, "Haz un vídeo");
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+
+        mMediaUri = FileUtilities.getOutputMediaFileUri(FileUtilities.MEDIA_TYPE_VIDEO);
+
+        if (mMediaUri == null){
+            Toast.makeText(this, "Error en el almacenamiento externo", Toast.LENGTH_LONG).show();
+        }
+        else{
+        startActivityForResult(takeVideoIntent, TAKE_VIDEO_REQUEST);
+        }
     }
 
     @Override
@@ -174,4 +259,26 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         }
     }
 
+    //Metodo que se va a ejecutar cuando vuelva de la camara de fotos
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Si es igual de abrir la camara y haces la foto
+        if(resultCode == RESULT_OK){
+
+            //Intent para avisar a galeria de que hay una imagen nueva
+            Intent mediaScanIntent = new Intent(
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+
+            mediaScanIntent.setData(mMediaUri);
+
+            //al que le interese hay una nueva foto
+            sendBroadcast(mediaScanIntent);
+        }
+        //Si es distinto de abrir la camara y no haces la foto
+        else if(resultCode != RESULT_CANCELED){
+            Toast.makeText(this, "Foto Cancelada", Toast.LENGTH_LONG).show();
+        }
+    }
 }

@@ -35,5 +35,13 @@
     <string name="usersNoExit">No users</string>
     <string name="cancelButtonLabel">Cancel</string>
     <string name="buttonDivider">Button Divider</string>
+    <string name="menu_camera_label">Camera</string>
+
+    <string-array name="camera_choices">
+        <item>Haz una foto</item>
+        <item>Haz un vídeo</item>
+        <item>Elige una foto</item>
+        <item>Elige un vídeo</item>
+    </string-array>
 
 </resources>
