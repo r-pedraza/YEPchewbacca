@@ -160,21 +160,40 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
                     case 0: 
                         takePhoto();
                         break;
-                    case 1: 
-                        
+                    case 1:
                         takeVideo();
                         break;
                     case 2: 
                         
-                        Log.d(TAG, "Elige una foto");
+                        pickPhoto();
                         break;
                     case 3: 
                         
-                        Log.d(TAG, "Elige un vídeo");
+                        pickVideo();
                         break;
                 }
             }
         };
+    }
+
+    //Cogera un video de la galeria
+    private void pickVideo() {
+        Log.d(TAG, "Elige un vídeo");
+        Intent chooseVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        //solo imagenes
+        chooseVideoIntent.setType("video/*");
+        startActivityForResult(chooseVideoIntent, PICK_VIDEO_REQUEST);
+    }
+
+    //Cogera foto de la galeria
+    private void pickPhoto() {
+        Log.d(TAG, "Elige una foto");
+        Intent choosePhotoIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        //solo imagenes
+        choosePhotoIntent.setType("image/*");
+        startActivityForResult(choosePhotoIntent, PICK_PHOTO_REQUEST);
     }
 
     //Método que sacara la camara de fotos
@@ -205,7 +224,12 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             Toast.makeText(this, "Error en el almacenamiento externo", Toast.LENGTH_LONG).show();
         }
         else{
-        startActivityForResult(takeVideoIntent, TAKE_VIDEO_REQUEST);
+            takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mMediaUri);
+            //duracion del video + INTRODUCIR CONSTANTE
+            takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);
+            //calidad del video + INTRODUCIR CONSTANTE
+            takeVideoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+            startActivityForResult(takeVideoIntent, TAKE_VIDEO_REQUEST);
         }
     }
 
@@ -267,14 +291,26 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         //Si es igual de abrir la camara y haces la foto
         if(resultCode == RESULT_OK){
 
-            //Intent para avisar a galeria de que hay una imagen nueva
-            Intent mediaScanIntent = new Intent(
-                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            //Solo se ejecutara cuando coja video o imagen
+            if (requestCode == TAKE_PHOTO_REQUEST || requestCode == TAKE_VIDEO_REQUEST) {
 
-            mediaScanIntent.setData(mMediaUri);
+                //Intent para avisar a galeria de que hay una imagen nueva
+                Intent mediaScanIntent = new Intent(
+                        Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 
-            //al que le interese hay una nueva foto
-            sendBroadcast(mediaScanIntent);
+                mediaScanIntent.setData(mMediaUri);
+
+                //Dira al que le interese hay una nueva foto
+                sendBroadcast(mediaScanIntent);
+            }
+            else{
+                if(data != null){
+                    mMediaUri = data.getData();
+                }
+                else{
+                    // TODO Mensaje de error
+                }
+            }
         }
         //Si es distinto de abrir la camara y no haces la foto
         else if(resultCode != RESULT_CANCELED){
