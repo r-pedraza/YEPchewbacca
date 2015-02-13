@@ -63,20 +63,14 @@
         style="@style/AuthButton"
         android:layout_below="@+id/editTextLayout"
         android:layout_toLeftOf="@+id/divideButton"
-        android:layout_marginRight="0dp"
-
-    />
+        android:layout_marginRight="0dp"/>
     <Button
         android:text="@string/buttonSingUpCancelText"
         android:id="@+id/buttonSingCancel"
         style="@style/AuthButton"
         android:layout_below="@+id/editTextLayout"
-
         android:layout_toRightOf="@+id/divideButton"
-        android:layout_marginLeft="0dp"
-
-
-        />
+        android:layout_marginLeft="0dp"/>
 
 
 

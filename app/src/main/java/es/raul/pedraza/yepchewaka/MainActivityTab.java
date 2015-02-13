@@ -2,6 +2,8 @@ package es.raul.pedraza.yepchewaka;
 
 import java.util.Locale;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -189,5 +191,6 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             return rootView;
         }
     }
+  
 
 }

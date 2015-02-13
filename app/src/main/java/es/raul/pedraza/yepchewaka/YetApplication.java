@@ -14,7 +14,6 @@ public class YetApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // Enable Local Datastore.
-        // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "wVrm5HZnLB49CAL9NIuYZ25sdBPuJkoQFWuTVup2", "kBx21HZKmUwfYvclgLCOu7JJ2qjhPHp3hFKkieQ1");
         ParseObject testObject = new ParseObject("TestObject");

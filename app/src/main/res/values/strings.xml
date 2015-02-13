@@ -34,5 +34,6 @@
     <string name="buttonSIngUpText">Sing Up</string>
     <string name="buttonSingUpCancelText">Cancel</string>
     <string name="ButtonDivideSingUp">Button_divide</string>
+    <string name="cameraActionTab">cameraActionTab</string>
 
 </resources>

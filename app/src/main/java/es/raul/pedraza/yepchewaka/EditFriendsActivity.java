@@ -42,8 +42,6 @@ public class EditFriendsActivity extends ListActivity {
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-
     }
 
     @Override
@@ -91,10 +89,6 @@ public class EditFriendsActivity extends ListActivity {
 
             }
         });
-
-
-
-
     }
 
     @Override
@@ -152,7 +146,6 @@ public class EditFriendsActivity extends ListActivity {
                         }
                     }
                 }
-
 
             }
         });

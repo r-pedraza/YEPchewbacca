@@ -22,7 +22,7 @@ import com.parse.ParseUser;
 public class  LoginActivity extends ActionBarActivity implements View.OnClickListener {
     Button button;
     TextView tv;
-    EditText aName, aPass, aEmail;
+    EditText aName, aPass;
 
     private static String TAG = LoginActivity.class.getName();
 
@@ -40,10 +40,7 @@ public class  LoginActivity extends ActionBarActivity implements View.OnClickLis
 
         //quitar barra actionBar
         getSupportActionBar().hide();
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,10 +84,13 @@ public class  LoginActivity extends ActionBarActivity implements View.OnClickLis
 
 
 
-                if (name.isEmpty() || pass.isEmpty()) {
+                if (name.isEmpty() ) {
 
-                    Toast.makeText(this, "No esta completado Alguno de los campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "No esta completado el campo Nombre", Toast.LENGTH_SHORT).show();
 
+
+                }else if(pass.isEmpty()){
+                    Toast.makeText(this, "No esta completado el campo Password", Toast.LENGTH_SHORT).show();
 
                 } else {
 
@@ -113,7 +113,10 @@ public class  LoginActivity extends ActionBarActivity implements View.OnClickLis
                     });
                     break;
 
+
                 }
+
+
 
         }
     }

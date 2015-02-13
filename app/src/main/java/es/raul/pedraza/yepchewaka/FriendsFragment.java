@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by carlosfernandez on 30/12/14.
+ * Created by raulpedrazaleon on 30/12/14.
  */
 public class FriendsFragment extends ListFragment {
 
@@ -28,11 +28,8 @@ public class FriendsFragment extends ListFragment {
 
     List<ParseUser> mUsers;
     ArrayList<String> usernames;
-
     ArrayAdapter<String> adapter;
-
     ProgressBar spinner;
-
     ParseUser mCurrentUser;
     ParseRelation<ParseUser> mFriendsRelation;
 
@@ -87,12 +84,7 @@ public class FriendsFragment extends ListFragment {
 
     private void setListView() {
         usernames= new ArrayList<String>();
-
         adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,usernames);
         setListAdapter(adapter);
-
-
     }
-
-
 }

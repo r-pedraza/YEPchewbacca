@@ -85,29 +85,25 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
                                         public void done(com.parse.ParseException e) {
 
 
-                                            // Hooray! Let them use the app now.
-                                            // Sign up didn't succeed. Look at the ParseException
-                                            if (e == null) {
+                        // Hooray! Let them use the app now.
+                        // Sign up didn't succeed. Look at the ParseException
+                        if (e == null) {
 
-                                                Intent intent = new Intent(SingUpActivity.this, MainActivityTab.class);
-                                                startActivity(intent);
-                                                //No se guarde en el historial para que al volver atras mencionemos al registro.
-                                                intent.addFlags((intent.FLAG_ACTIVITY_NEW_TASK));
-                                                intent.addFlags((intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                                startActivity(intent);
+                        Intent intent = new Intent(SingUpActivity.this, MainActivityTab.class);
+                        startActivity(intent);
+                        //No se guarde en el historial para que al volver atras mencionemos al registro.
+                        intent.addFlags((intent.FLAG_ACTIVITY_NEW_TASK));
+                        intent.addFlags((intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        startActivity(intent);
 
-                                            } else {
-                                                Toast.makeText(SingUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                                            }
-                                        }
-
+                        } else {
+                        Toast.makeText(SingUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                      }
+                  }
 
                                     }
 
             );
-
 
         }
             break;
