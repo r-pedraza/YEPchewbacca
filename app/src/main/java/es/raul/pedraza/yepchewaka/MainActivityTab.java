@@ -22,6 +22,9 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -181,8 +184,25 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         Log.d(TAG, "Elige un vídeo");
         Intent chooseVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
 
-        //solo imagenes
+        //solo videos
         chooseVideoIntent.setType("video/*");
+
+        //Ventana de dialogo, le pasamos el contexto (this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Escoge un video de menos de 10MB"); //mensaje que aparecera
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent takeVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                takeVideoIntent.setType("video/*");
+                startActivityForResult(takeVideoIntent, PICK_VIDEO_REQUEST);
+            }
+        }); //creamos boton de ok y escogemos video
+        builder.setTitle("Cuidadin"); //opcional
+        builder.setIcon(android.R.drawable.ic_dialog_alert); //icono de la ventana
+
+        AlertDialog dialog = builder.create(); //creamos la ventana
+
         startActivityForResult(chooseVideoIntent, PICK_VIDEO_REQUEST);
     }
 
@@ -306,15 +326,36 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             else{
                 if(data != null){
                     mMediaUri = data.getData();
+
+                    if(requestCode == PICK_VIDEO_REQUEST){
+                        //Comprobamos que no tiene mas de 10MB
+                        int fileSize = 0; //10MB en bytes
+                        int sizeMax = 10*1024*1024; //tamaño maximo
+
+                        InputStream inputStream = null;
+
+                        try{
+                            inputStream = getContentResolver().openInputStream(mMediaUri);
+                            fileSize = inputStream.available();
+                            inputStream.close(); //cerrar con finally
+                        }
+                        catch(IOException e){
+
+                        }
+
+                        if(fileSize > sizeMax){
+                            Toast.makeText(this, "Escoge un video de menos de 10MB", Toast.LENGTH_LONG).show();                        }
+                    }
+
                 }
                 else{
-                    // TODO Mensaje de error
+                    //Crear ventana de dialogo
                 }
             }
         }
         //Si es distinto de abrir la camara y no haces la foto
         else if(resultCode != RESULT_CANCELED){
-            Toast.makeText(this, "Foto Cancelada", Toast.LENGTH_LONG).show();
+            //Crear ventana de dialogo
         }
     }
 }
