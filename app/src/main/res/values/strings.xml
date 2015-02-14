@@ -36,4 +36,12 @@
     <string name="ButtonDivideSingUp">Button_divide</string>
     <string name="cameraActionTab">cameraActionTab</string>
 
+
+    <string-array name="camera_choices">
+        <item>Haz una foto</item>
+        <item>Haz una video</item>
+        <item>Elige una foto</item>
+        <item>Elige un video</item>
+    </string-array>
+
 </resources>

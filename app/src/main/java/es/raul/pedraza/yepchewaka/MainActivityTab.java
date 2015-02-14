@@ -1,11 +1,20 @@
 package es.raul.pedraza.yepchewaka;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.PrivateKey;
 import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -14,11 +23,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
@@ -26,6 +37,20 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
+
+    private static final String TAG = MainActivityTab.class.getName();
+    private static final int TAKE_PHOTO_REQUEST = 0;
+    private static final int TAKE_VIDEO_REQUEST = 1;
+    private static final int PICK_PHOTO_REQUEST = 2;
+    private static final int PICK_VIDEO_REQUEST = 3;
+    private static final int VIDEO_LIMIT = 10;
+    private static final int VIDEO_QUALITY = 0;
+
+    //Variable para guardar la ruta de la imagen
+    Uri mMediaUri;
+
+
+
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -135,7 +160,129 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
         }
 
+        if(id==R.id.cameraActionTab){
+
+            dialogCameraChoices();
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void dialogCameraChoices() {
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setItems(R.array.camera_choices,mDialogListener());
+        //crear ventana
+        AlertDialog dialog=builder.create();
+        //Mostrar ventana
+        dialog.show();
+    }
+
+    private DialogInterface.OnClickListener mDialogListener() {
+
+
+
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+                switch (which){
+                    case 0:
+                        //LLamada a intent implicit para la camara de fotos
+                        Intent takePhotoIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(takePhotoIntent,TAKE_PHOTO_REQUEST);
+                        takePhoto();
+
+                        break;
+                    case 1:
+                        Intent takeVideoIntent=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                        startActivityForResult(takeVideoIntent, TAKE_VIDEO_REQUEST);
+                        takeVideo();
+
+                        break;
+                    case 2:
+                            pickPhoto();
+
+                        break;
+                    case 3:
+                        pickVideo();
+
+                        break;
+
+                }
+            }
+        };
+    }
+
+    private void pickVideo() {
+        Log.d(TAG,"ELige una video");
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage("Cuidadin");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent choosePhotoIntent=new Intent(Intent.ACTION_GET_CONTENT);
+                //que me muestre de la galeria solo los videos.
+                choosePhotoIntent.setType("video/*");
+                startActivityForResult(choosePhotoIntent,PICK_VIDEO_REQUEST);
+
+            }
+        });
+        builder.setTitle("Cuidadin");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        AlertDialog dialog=builder.create();
+    }
+
+    private void pickPhoto() {
+
+        Log.d(TAG,"ELige un foto");
+        Intent choosePhotoIntent=new Intent(Intent.ACTION_GET_CONTENT);
+        //que me muestre de la galeria solo las fotos.
+        choosePhotoIntent.setType("image/*");
+        startActivityForResult(choosePhotoIntent,PICK_PHOTO_REQUEST);
+
+
+    }
+
+    private void takePhoto() {
+        Intent takePhotoIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePhotoIntent,TAKE_PHOTO_REQUEST);
+        mMediaUri=FileUtilities.getOutputMediaFile(FileUtilities.MEDIA_TYPE_IMAGE);
+
+        if(mMediaUri==null){
+
+            Toast.makeText(this,"Error en el almacenamiento externo Foto",Toast.LENGTH_LONG).show();
+
+
+        }else {
+            takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,mMediaUri);
+            startActivityForResult(takePhotoIntent, TAKE_PHOTO_REQUEST);
+        }
+
+
+
+    }
+    private void takeVideo() {
+        Intent takeVideoIntent=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        startActivityForResult(takeVideoIntent,TAKE_VIDEO_REQUEST);
+        mMediaUri=FileUtilities.getOutputMediaFile(FileUtilities.MEDIA_TYPE_VIDEO);
+
+        if(mMediaUri==null){
+
+            Toast.makeText(this,"Error en el almacenamiento externo Video",Toast.LENGTH_LONG).show();
+
+
+        }else {
+            takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,mMediaUri);
+            takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,VIDEO_LIMIT);
+            takeVideoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,VIDEO_QUALITY);
+            startActivityForResult(takeVideoIntent, TAKE_VIDEO_REQUEST);
+        }
+
+
+
     }
 
     @Override
@@ -191,6 +338,60 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             return rootView;
         }
     }
-  
+//Metodo que se ejecuta cuando vuelva de la camara de fotos
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode==RESULT_OK){
+            //Para que solo actualicemos la galeria solo si hemos hecho un videoo una galeria.
+            if(requestCode==TAKE_PHOTO_REQUEST||requestCode==TAKE_VIDEO_REQUEST) {
+                //Añadimos foto
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                mediaScanIntent.setData(mMediaUri);
+                //Avisar a todo el mundo que se ha añadido una foto
+                sendBroadcast(mediaScanIntent);
+            }else{
+
+                if(data!=null){
+                    mMediaUri=data.getData();
+
+                    if(requestCode==PICK_VIDEO_REQUEST){
+                        //10mb
+                        int fileSize=10*1024*1024;
+                        int sizeMax=10*1024*1024;
+                        InputStream inputStream=null;
+                        try{
+                            inputStream=getContentResolver().openInputStream(mMediaUri);
+                            fileSize=inputStream.available();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            if(fileSize>sizeMax){
+                                //TODO OTRO ERROR
+                                return;
+                            }
+                        }finally {
+                            if(inputStream!=null){
+
+                                try {
+                                    inputStream.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+        }
+        else if(resultCode!=RESULT_CANCELED){
+
+          Log.d(TAG,"ERROR NE MÉTODO ONACTIVITYRESULT DE MAINACTIVITY");
+        }
+
+    }
 }
