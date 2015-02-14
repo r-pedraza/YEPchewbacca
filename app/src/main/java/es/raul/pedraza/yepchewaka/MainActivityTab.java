@@ -45,6 +45,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     private static final int PICK_VIDEO_REQUEST = 3;
     private static final int VIDEO_LIMIT = 10;
     private static final int VIDEO_QUALITY = 0;
+    private static final int SIZE_MAX = 10*1024*1024;
 
     //Variable para guardar la ruta de la imagen
     Uri mMediaUri;
@@ -217,22 +218,10 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
     private void pickVideo() {
         Log.d(TAG,"ELige una video");
-
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        builder.setMessage("Cuidadin");
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent choosePhotoIntent=new Intent(Intent.ACTION_GET_CONTENT);
-                //que me muestre de la galeria solo los videos.
-                choosePhotoIntent.setType("video/*");
-                startActivityForResult(choosePhotoIntent,PICK_VIDEO_REQUEST);
-
-            }
-        });
-        builder.setTitle("Cuidadin");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        AlertDialog dialog=builder.create();
+        Intent choosePhotoIntent=new Intent(Intent.ACTION_GET_CONTENT);
+        //que me muestre de la galeria solo los videos.
+        choosePhotoIntent.setType("video/*");
+        startActivityForResult(choosePhotoIntent,PICK_VIDEO_REQUEST);
     }
 
     private void pickPhoto() {
@@ -358,8 +347,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
                     if(requestCode==PICK_VIDEO_REQUEST){
                         //10mb
-                        int fileSize=10*1024*1024;
-                        int sizeMax=10*1024*1024;
+                        int fileSize=0;
                         InputStream inputStream=null;
                         try{
                             inputStream=getContentResolver().openInputStream(mMediaUri);
@@ -367,10 +355,6 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
-                            if(fileSize>sizeMax){
-                                //TODO OTRO ERROR
-                                return;
-                            }
                         }finally {
                             if(inputStream!=null){
 
@@ -380,6 +364,24 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
                                     e.printStackTrace();
                                 }
                             }
+                        }
+                        if(fileSize>SIZE_MAX){
+                            //TODO OTRO ERROR
+                            Toast.makeText(this,"Tamaño mas de 10MB",Toast.LENGTH_LONG).show();
+
+                            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                            builder.setMessage("Cuidadin escoge un video menor de 10MB");
+                            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            builder.setTitle("Cuidadin");
+                            builder.setIcon(android.R.drawable.ic_dialog_alert);
+                            AlertDialog dialog=builder.create();
+                            dialog.show();
+                            return;
                         }
 
                     }
