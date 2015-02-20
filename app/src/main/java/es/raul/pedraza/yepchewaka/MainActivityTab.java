@@ -355,9 +355,20 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
             }
 
-            Intent intent = new Intent(this, RecipientsActivity.class);
-            intent.setData(mMediaUri);
-            startActivity(intent);
+            Intent recipientsIntent = new Intent(this, RecipientsActivity.class);
+            recipientsIntent.setData(mMediaUri); //te mando un archivo
+            String tipoFichero;
+
+            if(requestCode == PICK_PHOTO_REQUEST || requestCode == TAKE_PHOTO_REQUEST) {
+                tipoFichero = ParseConstants.TIPO_IMAGEN;
+            }
+            else{
+                tipoFichero = ParseConstants.TIPO_VIDEO;
+            }
+
+            recipientsIntent.putExtra(ParseConstants.CLAVE_TIPO_ARCHIVO, tipoFichero);
+
+            startActivity(recipientsIntent);
         }
         //Si es distinto de abrir la camara y no haces la foto
         else if(resultCode != RESULT_CANCELED){
