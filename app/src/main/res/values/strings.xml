@@ -44,4 +44,7 @@
         <item>Elige un vídeo</item>
     </string-array>
 
+    <string name="title_activity_recipients">RecipientsActivity</string>
+    <string name="action_send_string">Send</string>
+
 </resources>

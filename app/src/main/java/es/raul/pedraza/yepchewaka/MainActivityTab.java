@@ -351,7 +351,13 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
                 else{
                     //Crear ventana de dialogo
                 }
+
+
             }
+
+            Intent intent = new Intent(this, RecipientsActivity.class);
+            intent.setData(mMediaUri);
+            startActivity(intent);
         }
         //Si es distinto de abrir la camara y no haces la foto
         else if(resultCode != RESULT_CANCELED){
