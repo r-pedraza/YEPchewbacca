@@ -23,4 +23,6 @@ public class ParseConstants {
 
     public static final String TIPO_IMAGEN = "imagen";
     public static final String TIPO_VIDEO = "video";
+
+    public static final String CLAVE_CREADO_EN = "createdAt";
 }
