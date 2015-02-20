@@ -19,4 +19,6 @@ public class ParseConstants {
     public static final String FRIENDS_RELATION = "friendsRelation";
     public static final String TYPE_IMAGE = "image";
     public static final String TYPE_VIDEO = "video";
+    public static final String CREATED_AT = "createdAt";
+
 }
