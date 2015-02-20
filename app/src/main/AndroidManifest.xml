@@ -47,12 +47,18 @@
         <activity
             android:name=".RecipientsActivity"
             android:label="@string/title_activity_recipients"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivityTab"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
+        </activity>
+        <activity
+            android:name=".ViewPhoto"
+            android:label="@string/title_activity_view_photo"
+            android:parentActivityName=".MainActivityTab"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

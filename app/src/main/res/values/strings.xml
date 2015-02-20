@@ -46,5 +46,6 @@
     </string-array>
     <string name="title_activity_recipients">RecipientsActivity</string>
     <string name="editTextRecipientsActivity">Lista de amigos vacia</string>
+    <string name="title_activity_view_photo">ViewPhoto</string>
 
 </resources>

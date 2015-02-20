@@ -51,7 +51,6 @@ public class RecipientsActivity extends ListActivity {
         mMediaUri=intent.getData();
         mTypeFile=intent.getStringExtra(ParseConstants.KEY_TYPE_FILE);
 
-
     }
 
 
@@ -114,7 +113,7 @@ public class RecipientsActivity extends ListActivity {
         ParseObject message= new ParseObject(ParseConstants.CLASS_MESSAGE);
 
         //Name file
-
+         message.put(ParseConstants.KEY_TYPE_FILE,mTypeFile);
         message.put(ParseConstants.KEY_ID_SENDER,ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_NAME_SENDER,ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS,getRecipientsId());

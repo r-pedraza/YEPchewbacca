@@ -1,19 +1,24 @@
 package es.raul.pedraza.yepchewaka;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +80,34 @@ public class InboxFragment extends ListFragment {
 
             }
         });
+
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        //Conseguimos el mensaje del elemento
+    ParseObject message=mMessages.get(position);
+
+        String typeFile=message.getString(ParseConstants.KEY_TYPE_FILE);
+
+        if(typeFile.equals(ParseConstants.TYPE_IMAGE)){
+
+            //Cogeos el archivpo
+            ParseFile file=message.getParseFile(ParseConstants.KEY_FILE);
+            Uri fileUri=Uri.parse(file.getUrl());
+            Intent intent=new Intent(getActivity(),ViewPhoto.class);
+            intent.setData(fileUri);
+            startActivity(intent);
+
+        }else {
+
+            //video
+        }
+
+
+
 
     }
 }
