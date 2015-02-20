@@ -74,9 +74,9 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         setContentView(R.layout.activity_main_activity_tab);
         ParseUser currenUser = ParseUser.getCurrentUser();
         if(currenUser==null){
-            //Intent
+            //Intent apuntando a LoginActivity
             Intent intent= new Intent(this,LoginActivity.class);
-            //Crea una bandera que le dioce al log que el va a ser la ultima actividad.
+            //Crea una bandera que le dice al log que el va a ser la ultima actividad.
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //Borra la coleccion de avtividades superpuestas, es decir, por debajo.
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -298,7 +298,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class InboxFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -309,15 +309,15 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static InboxFragment newInstance(int sectionNumber) {
+            InboxFragment fragment = new InboxFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment() {
+        public InboxFragment() {
         }
 
         @Override
@@ -328,72 +328,78 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         }
     }
 //Metodo que se ejecuta cuando vuelva de la camara de fotos
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==RESULT_OK){
-            //Para que solo actualicemos la galeria solo si hemos hecho un videoo una galeria.
-            if(requestCode==TAKE_PHOTO_REQUEST||requestCode==TAKE_VIDEO_REQUEST) {
-                //Añadimos foto
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                mediaScanIntent.setData(mMediaUri);
-                //Avisar a todo el mundo que se ha añadido una foto
-                sendBroadcast(mediaScanIntent);
-            }else{
+    //Si es igual de abrir la camara y haces la foto
+    if(resultCode == RESULT_OK){
 
-                if(data!=null){
-                    mMediaUri=data.getData();
+        //Solo se ejecutara cuando coja video o imagen
+        if (requestCode == TAKE_PHOTO_REQUEST || requestCode == TAKE_VIDEO_REQUEST) {
 
-                    if(requestCode==PICK_VIDEO_REQUEST){
-                        //10mb
-                        int fileSize=0;
-                        InputStream inputStream=null;
-                        try{
-                            inputStream=getContentResolver().openInputStream(mMediaUri);
-                            fileSize=inputStream.available();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                        }finally {
-                            if(inputStream!=null){
+            //Intent para avisar a galeria de que hay una imagen nueva
+            Intent mediaScanIntent = new Intent(
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 
-                                try {
-                                    inputStream.close();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                        if(fileSize>SIZE_MAX){
-                            //TODO OTRO ERROR
-                            Toast.makeText(this,"Tamaño mas de 10MB",Toast.LENGTH_LONG).show();
+            mediaScanIntent.setData(mMediaUri);
 
-                            AlertDialog.Builder builder=new AlertDialog.Builder(this);
-                            builder.setMessage("Cuidadin escoge un video menor de 10MB");
-                            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+            //Dira al que le interese hay una nueva foto
+            sendBroadcast(mediaScanIntent);
+        }
+        else{
+            if(data != null){
+                mMediaUri = data.getData();
 
-                                }
-                            });
-                            builder.setTitle("Cuidadin");
-                            builder.setIcon(android.R.drawable.ic_dialog_alert);
-                            AlertDialog dialog=builder.create();
-                            dialog.show();
-                            return;
-                        }
+                if(requestCode == PICK_VIDEO_REQUEST){
+                    //Comprobamos que no tiene mas de 10MB
+                    int fileSize = 0; //10MB en bytes
+                    int sizeMax = 10*1024*1024; //tamaño maximo
+
+                    InputStream inputStream = null;
+
+                    try{
+                        inputStream = getContentResolver().openInputStream(mMediaUri);
+                        fileSize = inputStream.available();
+                        inputStream.close(); //cerrar con finally
+                    }
+                    catch(IOException e){
 
                     }
 
+                    if(fileSize > sizeMax){
+                        Toast.makeText(this, "Escoge un video de menos de 10MB", Toast.LENGTH_LONG).show();                        }
                 }
+
+            }
+            else{
+                //Crear ventana de dialogo
             }
 
-        }
-        else if(resultCode!=RESULT_CANCELED){
 
-          Log.d(TAG,"ERROR NE MÉTODO ONACTIVITYRESULT DE MAINACTIVITY");
         }
+
+        Intent intent = new Intent(this, RecipientsActivity.class);
+        intent.setData(mMediaUri);
+        startActivity(intent);
+        String typeFile = null;
+        if(requestCode==PICK_PHOTO_REQUEST||requestCode==TAKE_PHOTO_REQUEST) {
+            typeFile = ParseConstants.TYPE_IMAGE;
+        }
+            else{
+
+                typeFile = ParseConstants.TYPE_VIDEO;
+            }
+
+        intent.putExtra(ParseConstants.KEY_TYPE_FILE,typeFile);
+
+        startActivity(intent);
+
 
     }
+    //Si es distinto de abrir la camara y no haces la foto
+    else if(resultCode != RESULT_CANCELED){
+        //Crear ventana de dialogo
+    }
+}
 }

@@ -4,9 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.camera2" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <uses-feature android:name="android.hardware.camera2" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".YetApplication"
@@ -38,11 +39,20 @@
             android:name=".EditFriendsActivity"
             android:label="@string/title_activity_edit_friends"
             android:parentActivityName=".MainActivityTab"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="es.raul.pedraza.yepchewaka.MainActivityTab"
-                />
+                android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
+        </activity>
+        <activity
+            android:name=".RecipientsActivity"
+            android:label="@string/title_activity_recipients"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivityTab"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
         </activity>
     </application>
 
