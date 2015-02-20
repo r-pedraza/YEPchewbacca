@@ -117,6 +117,7 @@ public class RecipientsActivity extends ListActivity {
         //id recipient or recipients
         //name receiver
 
+        message.put(ParseConstants.CLAVE_TIPO_ARCHIVO, mTipoArchivo);
         message.put(ParseConstants.CLAVE_ID_REMITENTE,
                 ParseUser.getCurrentUser().getObjectId());
         message.put(ParseConstants.CLAVE_NOMBRE_REMITENTE,

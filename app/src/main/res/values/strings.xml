@@ -46,5 +46,6 @@
 
     <string name="title_activity_recipients">RecipientsActivity</string>
     <string name="action_send_string">Send</string>
+    <string name="title_activity_ver_imagen">Yep</string>
 
 </resources>

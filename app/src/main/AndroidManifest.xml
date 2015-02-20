@@ -39,7 +39,7 @@
             android:label="@string/title_activity_edit_friends"
             android:parentActivityName=".MainActivityTab"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
@@ -49,7 +49,16 @@
             android:label="@string/title_activity_recipients"
             android:parentActivityName=".MainActivityTab"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
+        </activity>
+        <activity
+            android:name=".VerImagenActivity"
+            android:label="@string/title_activity_ver_imagen"
+            android:parentActivityName=".MainActivityTab"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
