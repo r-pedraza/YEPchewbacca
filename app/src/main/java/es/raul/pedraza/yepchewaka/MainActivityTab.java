@@ -12,6 +12,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -53,6 +55,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
 
 
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -71,6 +74,11 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(130, 130, 130)));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(85,55,124)));
+
         setContentView(R.layout.activity_main_activity_tab);
         ParseUser currenUser = ParseUser.getCurrentUser();
         if(currenUser==null){
@@ -86,8 +94,6 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.ic_launcher);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
@@ -118,7 +124,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             // this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setIcon(mSectionsPagerAdapter.getIcon(i))
                             .setTabListener(this));
         }
     }
