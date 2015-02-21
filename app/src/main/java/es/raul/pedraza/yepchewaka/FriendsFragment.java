@@ -1,4 +1,3 @@
-
 package es.raul.pedraza.yepchewaka;
 
 import android.os.Bundle;
@@ -65,16 +64,15 @@ public class FriendsFragment extends ListFragment {
 
             @Override
             public void done(List<ParseUser> users, ParseException e) {
-                if(e == null){
+                if (e == null) {
 //sucess
                     spinner.setVisibility(View.INVISIBLE);
                     mUsers = users;
-                    for(ParseUser user:users){
+                    for (ParseUser user : users) {
                         adapter.add(user.getUsername());
                     }
 
-                }
-                else{
+                } else {
                     Log.e(TAG, "ParseException caught: ", e);
                 }
             }
@@ -83,8 +81,8 @@ public class FriendsFragment extends ListFragment {
     }
 
     private void setListView() {
-        usernames= new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,usernames);
+        usernames = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, usernames);
         setListAdapter(adapter);
     }
 }

@@ -1,6 +1,5 @@
 package es.raul.pedraza.yepchewaka;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,13 +31,13 @@ public class InboxFragment extends ListFragment {
     List<ParseObject> mMessages;
     ArrayList<String> messages;
     ArrayAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_inbox,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
         progressBar = rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-
 
 
         return rootView;
@@ -49,12 +47,12 @@ public class InboxFragment extends ListFragment {
     public void onResume() {
         super.onResume();
 
-        messages=new ArrayList<>();
-        adapter=new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,messages);
+        messages = new ArrayList<>();
+        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, messages);
         setListAdapter(adapter);
 
         //Consulta de los mensajes
-        ParseQuery<ParseObject> query=ParseQuery.getQuery(ParseConstants.CLASS_MESSAGE);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_MESSAGE);
 
         query.whereEqualTo(ParseConstants.KEY_RECIPIENT_IDS, ParseUser.getCurrentUser().getObjectId());
 
@@ -64,16 +62,16 @@ public class InboxFragment extends ListFragment {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
 
-                if (e==null) {
+                if (e == null) {
                     mMessages = parseObjects;
 
-                    for (ParseObject message:mMessages){
+                    for (ParseObject message : mMessages) {
 
                         adapter.add(message.getString(ParseConstants.KEY_NAME_SENDER));
                     }
 
                     progressBar.setVisibility(View.INVISIBLE);
-                }else {
+                } else {
 
                     //Error de envio a parse
                 }
@@ -88,25 +86,23 @@ public class InboxFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         //Conseguimos el mensaje del elemento
-    ParseObject message=mMessages.get(position);
+        ParseObject message = mMessages.get(position);
 
-        String typeFile=message.getString(ParseConstants.KEY_TYPE_FILE);
+        String typeFile = message.getString(ParseConstants.KEY_TYPE_FILE);
 
-        if(typeFile.equals(ParseConstants.TYPE_IMAGE)){
+        if (typeFile.equals(ParseConstants.TYPE_IMAGE)) {
 
             //Cogeos el archivpo
-            ParseFile file=message.getParseFile(ParseConstants.KEY_FILE);
-            Uri fileUri=Uri.parse(file.getUrl());
-            Intent intent=new Intent(getActivity(),ViewPhoto.class);
+            ParseFile file = message.getParseFile(ParseConstants.KEY_FILE);
+            Uri fileUri = Uri.parse(file.getUrl());
+            Intent intent = new Intent(getActivity(), ViewPhoto.class);
             intent.setData(fileUri);
             startActivity(intent);
 
-        }else {
+        } else {
 
             //video
         }
-
-
 
 
     }

@@ -1,6 +1,5 @@
 package es.raul.pedraza.yepchewaka;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -46,10 +44,10 @@ public class RecipientsActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipients);
-        spinner=(ProgressBar)findViewById(R.id.progressBarRecipientsActivity);
-        Intent intent=getIntent();
-        mMediaUri=intent.getData();
-        mTypeFile=intent.getStringExtra(ParseConstants.KEY_TYPE_FILE);
+        spinner = (ProgressBar) findViewById(R.id.progressBarRecipientsActivity);
+        Intent intent = getIntent();
+        mMediaUri = intent.getData();
+        mTypeFile = intent.getStringExtra(ParseConstants.KEY_TYPE_FILE);
 
     }
 
@@ -58,7 +56,7 @@ public class RecipientsActivity extends ListActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_recipients, menu);
-        mSendMenuItem=menu.getItem(0);
+        mSendMenuItem = menu.getItem(0);
         return true;
     }
 
@@ -73,13 +71,12 @@ public class RecipientsActivity extends ListActivity {
         if (id == R.id.action_send) {
 
 
+            ParseObject message = cretaeMessage();
 
-            ParseObject message=cretaeMessage();
-
-            if (message!=null){
+            if (message != null) {
 
                 send(message);
-            }else {
+            } else {
 
                 //Mensaje de error de que no se ha podido crear mensaje
             }
@@ -96,11 +93,11 @@ public class RecipientsActivity extends ListActivity {
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if (e==null){
+                if (e == null) {
 
-                    Toast.makeText(RecipientsActivity.this,"Ok",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RecipientsActivity.this, "Ok", Toast.LENGTH_LONG).show();
 
-                }else {
+                } else {
 
                     //Mensaje de mensaje no enviado
                 }
@@ -110,36 +107,34 @@ public class RecipientsActivity extends ListActivity {
 
     private ParseObject cretaeMessage() {
 
-        ParseObject message= new ParseObject(ParseConstants.CLASS_MESSAGE);
+        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGE);
 
         //Name file
-         message.put(ParseConstants.KEY_TYPE_FILE,mTypeFile);
-        message.put(ParseConstants.KEY_ID_SENDER,ParseUser.getCurrentUser());
-        message.put(ParseConstants.KEY_NAME_SENDER,ParseUser.getCurrentUser().getUsername());
-        message.put(ParseConstants.KEY_RECIPIENT_IDS,getRecipientsId());
-        byte fileBytes[]=FileHelper.getByteArrayFromFile(this,mMediaUri);
+        message.put(ParseConstants.KEY_TYPE_FILE, mTypeFile);
+        message.put(ParseConstants.KEY_ID_SENDER, ParseUser.getCurrentUser());
+        message.put(ParseConstants.KEY_NAME_SENDER, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, getRecipientsId());
+        byte fileBytes[] = FileHelper.getByteArrayFromFile(this, mMediaUri);
 
-        if(fileBytes!=null){
+        if (fileBytes != null) {
 
-            if(mTypeFile.equals(ParseConstants.TYPE_IMAGE)){
+            if (mTypeFile.equals(ParseConstants.TYPE_IMAGE)) {
 
                 //IMAGEN
 
 
-
             }
-            fileBytes=FileHelper.reduceImageForUpload(fileBytes);
-            String nameFile=FileHelper.getFileName(this,mMediaUri,mTypeFile);
+            fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+            String nameFile = FileHelper.getFileName(this, mMediaUri, mTypeFile);
             //Create object ParseFIle with name and array
-            ParseFile file=new ParseFile(nameFile,fileBytes);
+            ParseFile file = new ParseFile(nameFile, fileBytes);
             //Add to the class ParseObject and file
-            message.put(ParseConstants.KEY_FILE,file);
+            message.put(ParseConstants.KEY_FILE, file);
 
 
-        }
-        else {
+        } else {
 
-        //AlerDialog
+            //AlerDialog
         }
 
 
@@ -156,15 +151,13 @@ public class RecipientsActivity extends ListActivity {
 
         ArrayList<String> recipient = new ArrayList<>();
 
-        for (int i =0;i<getListView().getCount();i++){
+        for (int i = 0; i < getListView().getCount(); i++) {
 
-            if(getListView().isItemChecked(i)){
+            if (getListView().isItemChecked(i)) {
 
                 recipient.add(mFriends.get(i).getObjectId());
             }
         }
-
-
 
 
         return recipient;
@@ -192,16 +185,15 @@ public class RecipientsActivity extends ListActivity {
 
             @Override
             public void done(List<ParseUser> users, ParseException e) {
-                if(e == null){
+                if (e == null) {
 //sucess
                     spinner.setVisibility(View.INVISIBLE);
                     mFriends = users;
-                    for(ParseUser user:users){
+                    for (ParseUser user : users) {
                         adapter.add(user.getUsername());
                     }
 
-                }
-                else{
+                } else {
                     Log.e(TAG, "ParseException caught: ", e);
                 }
             }
@@ -210,8 +202,8 @@ public class RecipientsActivity extends ListActivity {
     }
 
     private void setListView() {
-        usernames= new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_checked,usernames);
+        usernames = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, usernames);
         setListAdapter(adapter);
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
@@ -221,10 +213,10 @@ public class RecipientsActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        if (l.getCheckedItemCount()>0) {
+        if (l.getCheckedItemCount() > 0) {
 
             mSendMenuItem.setVisible(true);
-        }else{
+        } else {
             mSendMenuItem.setVisible(false);
 
         }

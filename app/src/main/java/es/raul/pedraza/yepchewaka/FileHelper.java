@@ -16,14 +16,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- *
  * Created by Carlos on 08/02/2015.
  */
-public class FileHelper  {
-
-    final static String TAG = FileHelper.class.getName();
+public class FileHelper {
 
     public static final int SHORT_SIDE_TARGET = 1280;
+    final static String TAG = FileHelper.class.getName();
 
     //Convierte un foicehro en un array de bytes.
     public static byte[] getByteArrayFromFile(Context context, Uri uri) {
@@ -37,7 +35,7 @@ public class FileHelper  {
                 inStream = context.getContentResolver().openInputStream(uri);
                 outStream = new ByteArrayOutputStream();
 
-                byte[] bytesFromFile = new byte[1024*1024]; // buffer size (1 MB)
+                byte[] bytesFromFile = new byte[1024 * 1024]; // buffer size (1 MB)
                 int bytesRead = inStream.read(bytesFromFile);
                 while (bytesRead != -1) {
                     outStream.write(bytesFromFile, 0, bytesRead);
@@ -45,21 +43,19 @@ public class FileHelper  {
                 }
 
                 fileBytes = outStream.toByteArray();
-            }
-            catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 Log.e(TAG, "Fichero no encontrado", e);
-            }
-            catch (IOException e) {
-                Log.e(TAG,"IOException", e);
-            }
-            finally {
+            } catch (IOException e) {
+                Log.e(TAG, "IOException", e);
+            } finally {
                 try {
-                    if(inStream!= null)
+                    if (inStream != null)
                         inStream.close();
-                    if(outStream!=null)
+                    if (outStream != null)
                         outStream.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "IOException", e);
                 }
-                catch (IOException e) { Log.e(TAG,"IOException", e); }
             }
         }
         // File
@@ -69,12 +65,13 @@ public class FileHelper  {
                 File file = new File(uri.getPath());
                 fileInput = new FileInputStream(file);
                 fileBytes = IOUtils.toByteArray(fileInput);
-            }
-            catch (IOException e) {
-                if(fileInput!=null)
+            } catch (IOException e) {
+                if (fileInput != null)
                     try {
                         fileInput.close();
-                    } catch (IOException e1) { Log.e(TAG,"IOException", e);  }
+                    } catch (IOException e1) {
+                        Log.e(TAG, "IOException", e);
+                    }
                 Log.e(TAG, e.getMessage());
             }
         }
@@ -90,8 +87,7 @@ public class FileHelper  {
         byte[] reducedData = outputStream.toByteArray();
         try {
             outputStream.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             // Intentionally blank
         }
 
@@ -103,8 +99,7 @@ public class FileHelper  {
 
         if (fileType.equals(ParseConstants.TYPE_IMAGE)) {
             fileName += "png";
-        }
-        else {
+        } else {
             // For video, we want to get the actual file extension
             if (uri.getScheme().equals("content")) {
                 // do it using the mime type
@@ -112,8 +107,7 @@ public class FileHelper  {
                 int slashIndex = mimeType.indexOf("/");
                 String fileExtension = mimeType.substring(slashIndex + 1);
                 fileName += fileExtension;
-            }
-            else {
+            } else {
                 fileName = uri.getLastPathSegment();
             }
         }

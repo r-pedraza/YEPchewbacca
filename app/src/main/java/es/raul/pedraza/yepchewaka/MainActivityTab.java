@@ -1,28 +1,19 @@
 package es.raul.pedraza.yepchewaka;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.PrivateKey;
-import java.util.Locale;
-
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,10 +22,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.parse.LogInCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -49,9 +40,6 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
     //Variable para guardar la ruta de la imagen
     Uri mMediaUri;
-
-
-
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -86,9 +74,12 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.ic_launcher);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+   //     actionBar.setDisplayShowHomeEnabled(true);
+     //   actionBar.setBackgroundDrawable(new ColorDrawable());
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(130, 130, 130)));
+        // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(85,55,124)));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -118,7 +109,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
             // this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setIcon(mSectionsPagerAdapter.getIcon(i))
                             .setTabListener(this));
         }
     }
@@ -294,39 +285,6 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
      * one of the sections/tabs/pages.
      */
 
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class InboxFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static InboxFragment newInstance(int sectionNumber) {
-            InboxFragment fragment = new InboxFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public InboxFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main_activity_tab, container, false);
-            return rootView;
-        }
-    }
 //Metodo que se ejecuta cuando vuelva de la camara de fotos
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -402,4 +360,37 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //Crear ventana de dialogo
     }
 }
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class InboxFragment extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public InboxFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static InboxFragment newInstance(int sectionNumber) {
+            InboxFragment fragment = new InboxFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main_activity_tab, container, false);
+            return rootView;
+        }
+    }
 }

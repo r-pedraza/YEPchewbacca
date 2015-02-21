@@ -3,6 +3,7 @@ package es.raul.pedraza.yepchewaka;
 /**
  * Created by raulpedraza on 20/2/15.
  */
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Pair;
@@ -48,8 +49,7 @@ public class ImageResizer {
             // Landscape image. ratio (width/height) is > 1
             targetHeight = shorterSideTarget;
             targetWidth = Math.round(shorterSideTarget * ratio);
-        }
-        else {
+        } else {
             // Portrait image. ratio (width/height) is < 1
             targetWidth = shorterSideTarget;
             targetHeight = Math.round(shorterSideTarget / ratio);

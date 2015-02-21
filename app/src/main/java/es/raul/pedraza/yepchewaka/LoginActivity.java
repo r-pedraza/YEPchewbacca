@@ -1,10 +1,9 @@
 package es.raul.pedraza.yepchewaka;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,13 +18,11 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 
-public class  LoginActivity extends ActionBarActivity implements View.OnClickListener {
+public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
+    private static String TAG = LoginActivity.class.getName();
     Button button;
     TextView tv;
     EditText aName, aPass;
-
-    private static String TAG = LoginActivity.class.getName();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,19 +80,18 @@ public class  LoginActivity extends ActionBarActivity implements View.OnClickLis
                 String pass = aPass.getText().toString().trim();
 
 
-
-                if (name.isEmpty() ) {
+                if (name.isEmpty()) {
 
                     Toast.makeText(this, "No esta completado el campo Nombre", Toast.LENGTH_SHORT).show();
 
 
-                }else if(pass.isEmpty()){
+                } else if (pass.isEmpty()) {
                     Toast.makeText(this, "No esta completado el campo Password", Toast.LENGTH_SHORT).show();
 
                 } else {
 
-                    final ProgressDialog dialog=ProgressDialog.show(this,getString(R.string.logginMessage),
-                            getString(R.string.waitingMessage),true);
+                    final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string.logginMessage),
+                            getString(R.string.waitingMessage), true);
 
                     ParseUser.logInInBackground(name, pass, new LogInCallback() {
                         @Override
@@ -115,7 +111,6 @@ public class  LoginActivity extends ActionBarActivity implements View.OnClickLis
 
 
                 }
-
 
 
         }

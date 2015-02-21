@@ -1,19 +1,15 @@
 package es.raul.pedraza.yepchewaka;
 
 import android.app.ListActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
@@ -25,7 +21,7 @@ import java.util.List;
 
 
 public class EditFriendsActivity extends ListActivity {
-    final static  String TAG=EditFriendsActivity.class.getName();
+    final static String TAG = EditFriendsActivity.class.getName();
     ProgressBar progressBar;
     List<ParseUser> mUsers;
     List<String> objectsIds;
@@ -39,7 +35,7 @@ public class EditFriendsActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_friends);
-        progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
@@ -64,10 +60,10 @@ public class EditFriendsActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         //Comprueba si el usuario esta selecionado y añade usuario.
-        if(getListView().isItemChecked(position)){
+        if (getListView().isItemChecked(position)) {
 
             mFriendsRelation.add(mUsers.get(position));
-        }else{
+        } else {
 
             mFriendsRelation.remove(mUsers.get(position));
 
@@ -78,14 +74,13 @@ public class EditFriendsActivity extends ListActivity {
         mCurrentUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-            if(e==null){
+                if (e == null) {
 
-                //puta madre
-            }
-                else{
+                    //puta madre
+                } else {
 
-                Log.e(TAG,"Error al guardar relación",e);
-            }
+                    Log.e(TAG, "Error al guardar relación", e);
+                }
 
             }
         });
@@ -101,18 +96,18 @@ public class EditFriendsActivity extends ListActivity {
         ParseQuery query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.USERNAME);
         query.setLimit(ParseConstants.MAX_USERS);
-        usernames= new ArrayList<>();
-        objectsIds=new ArrayList<String>();
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_checked,usernames);
+        usernames = new ArrayList<>();
+        objectsIds = new ArrayList<String>();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, usernames);
         setListAdapter(adapter);
 
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
-            public void done(List <ParseUser>users, ParseException e) {
-                if(e==null){
+            public void done(List<ParseUser> users, ParseException e) {
+                if (e == null) {
 
-                    mUsers=users;
-                    for(ParseUser user:mUsers){
+                    mUsers = users;
+                    for (ParseUser user : mUsers) {
                         objectsIds.add(user.getObjectId());
                         adapter.add(user.getUsername());
                     }
@@ -121,7 +116,7 @@ public class EditFriendsActivity extends ListActivity {
                     progressBar.setVisibility(View.INVISIBLE);
 
 
-                }else{
+                } else {
                     Log.e(TAG, "Mierda", e);
                 }
             }
@@ -134,14 +129,14 @@ public class EditFriendsActivity extends ListActivity {
             @Override
             public void done(List<ParseUser> parseUsers, ParseException e) {
 
-                if(e==null){
+                if (e == null) {
 
-                    for(ParseUser user:parseUsers){
-                        String userId=user.getObjectId();
+                    for (ParseUser user : parseUsers) {
+                        String userId = user.getObjectId();
                         //Comprobamos por id si es maigo mio o no es amigo mio, mio es el usuario con el que estemos registrado en yep.
-                        if(objectsIds.contains(user.getObjectId())){
+                        if (objectsIds.contains(user.getObjectId())) {
 
-                            getListView().setItemChecked(objectsIds.indexOf(userId),true);
+                            getListView().setItemChecked(objectsIds.indexOf(userId), true);
 
                         }
                     }

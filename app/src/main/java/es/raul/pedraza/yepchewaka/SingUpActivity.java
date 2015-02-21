@@ -2,8 +2,8 @@ package es.raul.pedraza.yepchewaka;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,14 +14,12 @@ import android.widget.Toast;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-import java.text.ParseException;
-
 
 public class SingUpActivity extends ActionBarActivity implements View.OnClickListener {
 
 
     EditText name, pass, email;
-    Button btn,btnCancel;
+    Button btn, btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.ETMail);
         btn = (Button) findViewById(R.id.buttonSing);
         btn.setOnClickListener(this);
-        btnCancel=(Button)findViewById(R.id.buttonSingCancel);
+        btnCancel = (Button) findViewById(R.id.buttonSingCancel);
         btnCancel.setOnClickListener(this);
         getSupportActionBar().hide();
 
@@ -63,59 +61,60 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-    switch (v.getId()) {
-        case(R.id.buttonSing):
+        switch (v.getId()) {
+            case (R.id.buttonSing):
                 String aName = name.getText().toString().trim();
-        String aPass = pass.getText().toString().trim();
-        String aMail = email.getText().toString().trim();
+                String aPass = pass.getText().toString().trim();
+                String aMail = email.getText().toString().trim();
 
-        if (checkEmotyFile(aName, aPass, aMail)) {
+                if (checkEmotyFile(aName, aPass, aMail)) {
 
-            createErrorDialog(getString(R.string.empty_field_message));
-        } else {
+                    createErrorDialog(getString(R.string.empty_field_message));
+                } else {
 
-            ParseUser user = new ParseUser();
-            user.setUsername(aName);
-            user.setPassword(aPass);
-            user.setEmail(aMail);
-
-
-            user.signUpInBackground(new SignUpCallback() {
-                                        @Override
-                                        public void done(com.parse.ParseException e) {
+                    ParseUser user = new ParseUser();
+                    user.setUsername(aName);
+                    user.setPassword(aPass);
+                    user.setEmail(aMail);
 
 
-                        // Hooray! Let them use the app now.
-                        // Sign up didn't succeed. Look at the ParseException
-                        if (e == null) {
+                    user.signUpInBackground(new SignUpCallback() {
+                                                @Override
+                                                public void done(com.parse.ParseException e) {
 
-                        Intent intent = new Intent(SingUpActivity.this, MainActivityTab.class);
-                        startActivity(intent);
-                        //No se guarde en el historial para que al volver atras mencionemos al registro.
-                        intent.addFlags((intent.FLAG_ACTIVITY_NEW_TASK));
-                        intent.addFlags((intent.FLAG_ACTIVITY_CLEAR_TASK));
-                        startActivity(intent);
 
-                        } else {
-                        Toast.makeText(SingUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                      }
-                  }
+                                                    // Hooray! Let them use the app now.
+                                                    // Sign up didn't succeed. Look at the ParseException
+                                                    if (e == null) {
 
-                                    }
+                                                        Intent intent = new Intent(SingUpActivity.this, MainActivityTab.class);
+                                                        startActivity(intent);
+                                                        //No se guarde en el historial para que al volver atras mencionemos al registro.
+                                                        intent.addFlags((intent.FLAG_ACTIVITY_NEW_TASK));
+                                                        intent.addFlags((intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                                        startActivity(intent);
 
-            );
+                                                    } else {
+                                                        Toast.makeText(SingUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+
+                                            }
+
+                    );
+
+                }
+                break;
+            case (R.id.buttonSingCancel):
+                finish();
+                break;
 
         }
-            break;
-        case(R.id.buttonSingCancel):
-            finish();
-            break;
-
-    }
     }
 
     /**
      * Método que comprueba si los datos estan o no correctos
+     *
      * @param aName
      * @param aPass
      * @param aMail
@@ -129,13 +128,14 @@ public class SingUpActivity extends ActionBarActivity implements View.OnClickLis
 
     /**
      * Método pque recoge un mensaje por parametro.
+     *
      * @param message
      */
     private void createErrorDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SingUpActivity.this);
         builder.setMessage(message);
         builder.setTitle(getString(R.string.errorMessageSinUp));
-        builder.setPositiveButton(android.R.string.ok,null);
+        builder.setPositiveButton(android.R.string.ok, null);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
     }
 }

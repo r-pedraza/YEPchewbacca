@@ -1,11 +1,13 @@
 <resources>
 
-    <style name="AppTheme" parent="@style/_AppTheme"/>
-
+    <style name="AppTheme" parent="@style/_AppTheme" />
     <style name="_AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
+        <item name="android:actionOverflowButtonStyle">@style/AppTheme.OverFlow</item>
     </style>
-
+    <style name="AppTheme.OverFlow." parent="android:Widget.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_overflow</item>
+    </style>
     <style name="AuthBackground">
         <item name="android:background">@drawable/background_fill</item>
     </style>
@@ -18,7 +20,6 @@
         <item name="android:scaleType">fitStart</item>
         <item name="android:contentDescription">@string/imageDescription</item>
     </style>
-
     <style name="AuthTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -28,7 +29,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">32dp</item>
     </style>
-
     <style name="AuthSubTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -38,7 +38,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/subtitleLogin</item>
     </style>
-
     <style name="AuthFillContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -53,14 +52,12 @@
         <item name="android:paddingTop">@dimen/login_vertical_padding</item>
         <item name="android:paddingBottom">@dimen/login_vertical_padding</item>
     </style>
-
     <style name="AuthEditTextName">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_above">@+id/passwordLogin</item>
         <item name="android:textColorHint">@color/generic</item>
     </style>
-
     <style name="AuthButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -70,5 +67,6 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/buttonLoginColor</item>
     </style>
+    <style name="AppTheme.OverFlow">Appthem.OverFlow</style>
 
 </resources>

@@ -23,24 +23,24 @@ import java.util.Locale;
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            if (position==0){
-                InboxFragment inboxFragment= new InboxFragment();
-                return inboxFragment;
-            }else {
-                FriendsFragment friendsFragment= new FriendsFragment();
-                    return friendsFragment;
-            }
-        }
+    // Return a PlaceholderFragment (defined as a static inner class below).
+    if (position==0){
+        InboxFragment inboxFragment= new InboxFragment();
+        return inboxFragment;
+    }else {
+        FriendsFragment friendsFragment= new FriendsFragment();
+        return friendsFragment;
+    }
+}
 
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return NUMBERS_OF_TABS;
-        }
+    @Override
+    public int getCount() {
+        // Show 3 total pages.
+        return NUMBERS_OF_TABS;
+    }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
+    @Override
+    public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
@@ -50,5 +50,17 @@ import java.util.Locale;
             }
             return null;
         }
+
+
+    public int getIcon(int position) {
+        switch (position) {
+            case 0:
+                return R.drawable.ic_tab_inbox;
+            case 1:
+                return R.drawable.ic_tab_friends;
+        }
+        return R.drawable.ic_tab_inbox;
     }
+
+}
 
