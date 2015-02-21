@@ -3,6 +3,8 @@ package es.raul.pedraza.yepchewaka;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -57,6 +59,11 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(130,130,130)));
+        getSupportActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.rgb(85,55,124)));
+
         if (ParseUser.getCurrentUser() == null) {
             Intent intent = new Intent(this, LoginActivity.class);
         /*Bandera que le dice a Login que Login será
@@ -70,8 +77,8 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         final ActionBar actionBar = getSupportActionBar();
 
         //Ponemos icono
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.ic_launcher);
+        //actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setIcon(R.drawable.ic_launcher);
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
