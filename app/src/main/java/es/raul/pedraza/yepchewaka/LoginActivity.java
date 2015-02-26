@@ -68,6 +68,7 @@ public class LoginActivity extends ActionBarActivity {
 
                     dialog.dismiss(); //oculto en ventana
                 }else{
+                    //Arreglar esto
                     Toast.makeText(LoginActivity.this, "Complete los campos",
                             Toast.LENGTH_SHORT).show();
                     dialog.dismiss();

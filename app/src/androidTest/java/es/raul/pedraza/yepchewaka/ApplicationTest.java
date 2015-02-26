@@ -39,7 +39,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<LoginActiv
         super.tearDown();
     }
 
-    private static final String USER_YEP = "antonio";
+    private static final String USER_YEP = "antonioo";
     private static final String PASS_YEP = "toli";
 
     public void testAddValues() {
