@@ -68,7 +68,9 @@ public class LoginActivity extends ActionBarActivity {
 
                     dialog.dismiss(); //oculto en ventana
                 }else{
-                    Toast.makeText(LoginActivity.this, "Ups", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Complete los campos",
+                            Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
         });
@@ -95,4 +97,5 @@ public class LoginActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
