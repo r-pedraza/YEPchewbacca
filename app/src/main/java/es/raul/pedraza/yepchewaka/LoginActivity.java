@@ -107,6 +107,8 @@ public class  LoginActivity extends ActionBarActivity implements View.OnClickLis
 
                             } else {
 
+                                dialog.dismiss();
+
 
                             }
                         }
