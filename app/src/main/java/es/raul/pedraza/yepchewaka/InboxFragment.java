@@ -32,7 +32,6 @@ public class InboxFragment extends ListFragment {
     View progressBar;
     List<ParseObject> mMessages;
     ArrayList<String> messages;
-    ArrayAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -50,8 +49,6 @@ public class InboxFragment extends ListFragment {
         super.onResume();
 
         messages=new ArrayList<>();
-        adapter=new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,messages);
-        setListAdapter(adapter);
 
         //Consulta de los mensajes
         ParseQuery<ParseObject> query=ParseQuery.getQuery(ParseConstants.CLASS_MESSAGE);
@@ -66,11 +63,9 @@ public class InboxFragment extends ListFragment {
 
                 if (e==null) {
                     mMessages = parseObjects;
+                    MessageAdapter adapter=new MessageAdapter(getListView().getContext(),mMessages);
 
-                    for (ParseObject message:mMessages){
-
-                        adapter.add(message.getString(ParseConstants.KEY_NAME_SENDER));
-                    }
+                    setListAdapter(adapter);
 
                     progressBar.setVisibility(View.INVISIBLE);
                 }else {
