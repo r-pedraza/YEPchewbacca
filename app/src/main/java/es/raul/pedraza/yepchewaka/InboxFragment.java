@@ -8,7 +8,6 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -28,9 +27,9 @@ import java.util.List;
 public class InboxFragment extends ListFragment {
 
     ProgressBar progressBar;
-    List<ParseObject> mMensajes;
+    List<ParseObject> mMessages;
     private ArrayList<String> mensajes;
-    private ArrayAdapter adaptador;
+    //private ArrayAdapter adaptador;
     Context context;
 
     @Override
@@ -53,8 +52,9 @@ public class InboxFragment extends ListFragment {
         //Al ir cambiando de fragmento los mensajes se vuelven a actualizar
         //Por eso es mejor ponerlo en onResume que en onCreate
         mensajes = new ArrayList<>();
-        adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mensajes);
-        setListAdapter(adaptador);
+        //adaptador = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mensajes);
+        //MessageAdapter adaptador = new MessageAdapter(getListView().getContext(), mMessages);
+        //setListAdapter(adaptador);
 
         //Sacariamos todos los mensajes
         ParseQuery<ParseObject> consulta = ParseQuery.getQuery(ParseConstants.CLASS_MESSAGE);
@@ -70,12 +70,14 @@ public class InboxFragment extends ListFragment {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (e == null) {
-                    mMensajes = parseObjects;
+                    mMessages = parseObjects;
 
                     //Vamos a recorrer todos los mensajes
-                    for(ParseObject mensaje:mMensajes){
-                        adaptador.add(mensaje.getString(ParseConstants.CLAVE_NOMBRE_REMITENTE));
-                    }
+                    //for(ParseObject mensaje: mMessages){
+                        //adaptador.add(mensaje.getString(ParseConstants.CLAVE_NOMBRE_REMITENTE));
+                        MessageAdapter adaptador = new MessageAdapter(getListView().getContext(), mMessages);
+                        setListAdapter(adaptador);
+                    //}
 
                     //Cuando se carguen todos los mensajes desaparece
                     progressBar.setVisibility(View.INVISIBLE);
@@ -91,7 +93,7 @@ public class InboxFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        ParseObject message = mMensajes.get(position);
+        ParseObject message = mMessages.get(position);
         String tipoArchivo = message.getString(ParseConstants.CLAVE_TIPO_ARCHIVO);
 
         if(tipoArchivo.equals(ParseConstants.TIPO_IMAGEN)){
