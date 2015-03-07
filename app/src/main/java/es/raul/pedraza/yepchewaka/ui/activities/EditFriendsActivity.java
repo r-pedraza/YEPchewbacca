@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.activities;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -19,6 +19,9 @@ import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
 
 
 public class EditFriendsActivity extends ListActivity {

@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import es.raul.pedraza.yepchewaka.R;
 
 
 public class SignUpActivity extends ActionBarActivity {

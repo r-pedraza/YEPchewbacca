@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -17,6 +17,9 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
 
 /**
  * Created by carlosfernandez on 30/12/14.

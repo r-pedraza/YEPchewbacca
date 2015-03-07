@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,11 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.raul.pedraza.yepchewaka.ui.activities.ViewPhoto;
+import es.raul.pedraza.yepchewaka.adapters.MessageAdapter;
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
 
 /**
  * Created by Victor on 06/02/2015.
@@ -100,7 +105,7 @@ public class InboxFragment extends ListFragment {
             ParseFile archivo = message.getParseFile(ParseConstants.CLAVE_ARCHIVO);
 
             Uri ficheroUri = Uri.parse(archivo.getUrl());
-            Intent intent = new Intent(getActivity(), VerImagenActivity.class);
+            Intent intent = new Intent(getActivity(), ViewPhoto.class);
             intent.setData(ficheroUri);
             startActivity(intent);
         }

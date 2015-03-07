@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,6 +26,11 @@ import com.parse.ParseUser;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.adapters.SectionsPagerAdapter;
+import es.raul.pedraza.yepchewaka.utils.FileUtilities;
 
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {

@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.adapters;
 
 /**
  * Created by Victor on 06/02/2015.
@@ -10,6 +10,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.Locale;
+
+import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.ui.fragments.FriendsFragment;
+import es.raul.pedraza.yepchewaka.ui.fragments.InboxFragment;
 
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to

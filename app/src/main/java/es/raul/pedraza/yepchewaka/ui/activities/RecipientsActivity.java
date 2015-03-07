@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.activities;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -24,6 +24,10 @@ import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.utils.FileHelper;
 
 
 public class RecipientsActivity extends ListActivity {

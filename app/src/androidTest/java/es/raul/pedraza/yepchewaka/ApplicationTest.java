@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.parse.ParseUser;
 
+import es.raul.pedraza.yepchewaka.ui.activities.LoginActivity;
+
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>

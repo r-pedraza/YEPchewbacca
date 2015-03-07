@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.constants;
 
 /**
  * Created by Victor on 06/02/2015.

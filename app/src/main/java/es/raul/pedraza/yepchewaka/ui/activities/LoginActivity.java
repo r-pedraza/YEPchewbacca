@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import es.raul.pedraza.yepchewaka.R;
 
 
 public class LoginActivity extends ActionBarActivity {

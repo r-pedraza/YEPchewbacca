@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.ui.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,8 +9,10 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import es.raul.pedraza.yepchewaka.R;
 
-public class VerImagenActivity extends ActionBarActivity {
+
+public class ViewPhoto extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
