@@ -25,4 +25,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
     compile files('libs/commons-io-2.4.jar')
     compile 'com.squareup.picasso:picasso:2.5.0'
+    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
+
 }

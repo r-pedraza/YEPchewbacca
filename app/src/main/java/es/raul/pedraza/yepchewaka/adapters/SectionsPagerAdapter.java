@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.Locale;
+
+import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.fragments.FriendsFragment;
+import es.raul.pedraza.yepchewaka.fragments.InboxFragment;
 
 /**
  * Created by raulpedraza on 6/2/15.

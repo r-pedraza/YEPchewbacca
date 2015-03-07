@@ -1,18 +1,13 @@
 package es.raul.pedraza.yepchewaka;
 
-import android.app.Application;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.ApplicationTestCase;
 import android.test.TouchUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.parse.ParseUser;
 
-import junit.framework.TestResult;
-
-import es.raul.pedraza.yepchewaka.LoginActivity;
+import es.raul.pedraza.yepchewaka.activities.LoginActivity;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>

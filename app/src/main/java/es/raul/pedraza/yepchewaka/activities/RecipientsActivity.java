@@ -1,6 +1,5 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.activities;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -26,6 +24,11 @@ import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.raul.pedraza.yepchewaka.utils.FileHelper;
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.fragments.FriendsFragment;
 
 
 public class RecipientsActivity extends ListActivity {
@@ -117,7 +120,7 @@ public class RecipientsActivity extends ListActivity {
         message.put(ParseConstants.KEY_ID_SENDER,ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_NAME_SENDER,ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS,getRecipientsId());
-        byte fileBytes[]=FileHelper.getByteArrayFromFile(this,mMediaUri);
+        byte fileBytes[]= FileHelper.getByteArrayFromFile(this, mMediaUri);
 
         if(fileBytes!=null){
 

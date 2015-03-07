@@ -16,15 +16,15 @@
 
     tools:context=".MainActivity$PlaceholderFragment">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
 
 
-    <TextView
 
-        android:id="@+id/section_label"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -33,6 +33,14 @@
         android:layout_below="@+id/section_label"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView
+
+        android:id="@+id/section_label"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="match_parent"

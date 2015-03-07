@@ -1,26 +1,18 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.activities;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.PrivateKey;
-import java.util.Locale;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -33,10 +25,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.parse.LogInCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import es.raul.pedraza.yepchewaka.utils.FileUtilities;
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.adapters.SectionsPagerAdapter;
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -244,7 +238,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     private void takePhoto() {
         Intent takePhotoIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(takePhotoIntent,TAKE_PHOTO_REQUEST);
-        mMediaUri=FileUtilities.getOutputMediaFile(FileUtilities.MEDIA_TYPE_IMAGE);
+        mMediaUri= FileUtilities.getOutputMediaFile(FileUtilities.MEDIA_TYPE_IMAGE);
 
         if(mMediaUri==null){
 

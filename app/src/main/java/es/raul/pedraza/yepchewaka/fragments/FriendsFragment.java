@@ -1,5 +1,5 @@
 
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -19,6 +19,9 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
+
 /**
  * Created by raulpedrazaleon on 30/12/14.
  */
@@ -37,6 +40,7 @@ public class FriendsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
+
 
         spinner = (ProgressBar)
                 rootView.findViewById(R.id.progressBar);
@@ -66,7 +70,7 @@ public class FriendsFragment extends ListFragment {
             @Override
             public void done(List<ParseUser> users, ParseException e) {
                 if(e == null){
-//sucess
+                //sucess
                     spinner.setVisibility(View.INVISIBLE);
                     mUsers = users;
                     for(ParseUser user:users){

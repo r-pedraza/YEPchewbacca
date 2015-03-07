@@ -1,8 +1,7 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,11 @@ import android.widget.TextView;
 
 import com.parse.ParseObject;
 
+import java.util.Date;
 import java.util.List;
+
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.R;
 
 /**
  * Created by raulpedraza on 28/2/15.
@@ -36,6 +39,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             holder = new ViewHolder();
             holder.iconImageView = (ImageView) convertView.findViewById(R.id.messageIcon);
             holder.nameLabel = (TextView) convertView.findViewById(R.id.senderLabel);
+            holder.timeLabel=(TextView)convertView.findViewById(R.id.timeLabel);
             convertView.setTag(holder);
         } else {
 
@@ -46,14 +50,22 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
 
             ParseObject message = mMessages.get(position);
+            Date createdAt=message.getCreatedAt();
+            long now =new Date().getTime();
+            String convertedDate= DateUtils.getRelativeTimeSpanString(createdAt.getTime(),now,
+                    DateUtils.SECOND_IN_MILLIS).toString();
+            holder.timeLabel.setText(convertedDate);
             String fileType = message.getString(ParseConstants.KEY_TYPE_FILE);
-            if (fileType == null || fileType.equals(ParseConstants.TYPE_IMAGE)) {
+
+        if(fileType!=null) {
+            if (fileType.equals(ParseConstants.TYPE_IMAGE)) {
                 holder.iconImageView.setImageResource(R.drawable.ic_picture);
 
             } else {
                 holder.iconImageView.setImageResource(R.drawable.ic_video);
             }
             holder.nameLabel.setText(message.getString(ParseConstants.KEY_NAME_SENDER));
+        }
 
 
             return convertView;
@@ -64,6 +76,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
         ImageView iconImageView;
         TextView nameLabel;
+        TextView timeLabel;
 
     }
 }

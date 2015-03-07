@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.activities;
 
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+
+import es.raul.pedraza.yepchewaka.R;
 
 
 public class ViewPhoto extends ActionBarActivity {

@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-import java.text.ParseException;
+import es.raul.pedraza.yepchewaka.R;
 
 
 public class SingUpActivity extends ActionBarActivity implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.utils;
 
 import android.net.Uri;
 import android.os.Environment;

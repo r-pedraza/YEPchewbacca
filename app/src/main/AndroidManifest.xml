@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivityTab"
+            android:name=".activities.MainActivityTab"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,39 +25,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login_activitie"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".SingUpActivity"
+            android:name=".activities.SingUpActivity"
             android:label="@string/title_activity_sing_up"
-            android:parentActivityName=".LoginActivity"
+            android:parentActivityName=".activities.LoginActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".EditFriendsActivity"
+            android:name=".activities.EditFriendsActivity"
             android:label="@string/title_activity_edit_friends"
-            android:parentActivityName=".MainActivityTab"
+            android:parentActivityName=".activities.MainActivityTab"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
+                android:value=".activities.MainActivityTab" />
         </activity>
         <activity
-            android:name=".RecipientsActivity"
+            android:name=".activities.RecipientsActivity"
             android:label="@string/title_activity_recipients"
-            android:parentActivityName=".MainActivityTab"
+            android:parentActivityName=".activities.MainActivityTab"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="es.raul.pedraza.yepchewaka.MainActivityTab" />
+                android:value=".activities.MainActivityTab" />
         </activity>
         <activity
-            android:name=".ViewPhoto"
+            android:name=".activities.ViewPhoto"
             android:label="@string/title_activity_view_photo"
-            android:parentActivityName=".MainActivityTab"
+            android:parentActivityName=".activities.MainActivityTab"
             android:screenOrientation="portrait">
         </activity>
     </application>

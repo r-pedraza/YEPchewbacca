@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.utils;
 
 /**
  * Created by raulpedraza on 20/2/15.

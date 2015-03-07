@@ -1,4 +1,4 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.utils;
 
 
 import android.content.Context;
@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
 
 /**
  *

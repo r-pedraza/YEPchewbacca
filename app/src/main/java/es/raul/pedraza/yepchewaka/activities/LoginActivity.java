@@ -1,6 +1,5 @@
-package es.raul.pedraza.yepchewaka;
+package es.raul.pedraza.yepchewaka.activities;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -17,6 +16,8 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import es.raul.pedraza.yepchewaka.R;
 
 
 public class  LoginActivity extends ActionBarActivity implements View.OnClickListener {
