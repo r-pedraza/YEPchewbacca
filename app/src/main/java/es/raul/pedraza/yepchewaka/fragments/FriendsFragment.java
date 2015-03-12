@@ -70,7 +70,7 @@ public class FriendsFragment extends ListFragment {
             @Override
             public void done(List<ParseUser> users, ParseException e) {
                 if(e == null){
-                //sucess
+                //success
                     spinner.setVisibility(View.INVISIBLE);
                     mUsers = users;
                     for(ParseUser user:users){
