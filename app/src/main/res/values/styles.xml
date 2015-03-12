@@ -12,14 +12,14 @@
     </style>
 
     <style name="AuthBackground">
-        <item name="android:background">@drawable/background_fill</item>
+        <item name="android:background">@drawable/background_yep</item>
     </style>
     <style name="AuthBackgroundImage">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:background">@drawable/background</item>
+        <item name="android:background">@drawable/background_yep</item>
         <item name="android:scaleType">fitStart</item>
         <item name="android:contentDescription">@string/imageDescription</item>
     </style>
@@ -31,7 +31,7 @@
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textColor">@color/colorTitleLogin</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginTop">10dp</item>
     </style>
 
     <style name="AuthSubTitle">

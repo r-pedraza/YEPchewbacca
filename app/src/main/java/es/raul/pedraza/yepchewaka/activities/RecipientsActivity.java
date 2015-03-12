@@ -25,10 +25,10 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.raul.pedraza.yepchewaka.utils.FileHelper;
-import es.raul.pedraza.yepchewaka.constants.ParseConstants;
 import es.raul.pedraza.yepchewaka.R;
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
 import es.raul.pedraza.yepchewaka.fragments.FriendsFragment;
+import es.raul.pedraza.yepchewaka.utils.FileHelper;
 
 
 public class RecipientsActivity extends ListActivity {
@@ -85,6 +85,7 @@ public class RecipientsActivity extends ListActivity {
             }else {
 
                 //Mensaje de error de que no se ha podido crear mensaje
+                Log.e(TAG,"No se ha podido crear el mensaje");
             }
 
             return true;
@@ -106,6 +107,7 @@ public class RecipientsActivity extends ListActivity {
                 }else {
 
                     //Mensaje de mensaje no enviado
+                    Log.e(TAG,"No se ha podido enviar el mensaje");
                 }
             }
         });

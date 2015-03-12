@@ -41,7 +41,6 @@ public class FriendsFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
 
-
         spinner = (ProgressBar)
                 rootView.findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);

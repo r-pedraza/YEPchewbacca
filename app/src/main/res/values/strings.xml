@@ -19,8 +19,8 @@
     <string name="etSinupLogin">Don\'t have an account? Sin Up </string>
     <string name="emailHint">E-mail</string>
     <string name="imageDescription">Yep Background image</string>
-    <string name="subtitleTextLogin">Chewbacca</string>
-    <string name="textTitleLogin">YEP!</string>
+    <string name="subtitleTextLogin"></string>
+    <string name="textTitleLogin"></string>
     <string name="empty_field_message">Campos de login no coinciden</string>
     <string name="errorMessageSinUp">Error</string>
     <string name="action_logout">Logout</string>
@@ -47,5 +47,6 @@
     <string name="title_activity_recipients">RecipientsActivity</string>
     <string name="editTextRecipientsActivity">Lista de amigos vacia</string>
     <string name="title_activity_view_photo">ViewPhoto</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
