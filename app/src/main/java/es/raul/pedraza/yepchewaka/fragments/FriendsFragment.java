@@ -45,6 +45,7 @@ public class FriendsFragment extends ListFragment {
                 rootView.findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
         return rootView;
+
     }
 
     @Override
