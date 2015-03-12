@@ -1,22 +1,17 @@
 package es.raul.pedraza.yepchewaka.activities;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,10 +22,13 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-import es.raul.pedraza.yepchewaka.utils.FileUtilities;
-import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import java.io.IOException;
+import java.io.InputStream;
+
 import es.raul.pedraza.yepchewaka.R;
 import es.raul.pedraza.yepchewaka.adapters.SectionsPagerAdapter;
+import es.raul.pedraza.yepchewaka.constants.ParseConstants;
+import es.raul.pedraza.yepchewaka.utils.FileUtilities;
 
 public class MainActivityTab extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -45,9 +43,6 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
 
     //Variable para guardar la ruta de la imagen
     Uri mMediaUri;
-
-
-
 
 
     /**
@@ -69,9 +64,9 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_launcher);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(130, 130, 130)));
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(85,55,124)));
+        getSupportActionBar().setIcon(R.drawable.icon_yep);
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(130, 130, 130)));
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(85,55,124)));
 
         setContentView(R.layout.activity_main_activity_tab);
         ParseUser currenUser = ParseUser.getCurrentUser();
