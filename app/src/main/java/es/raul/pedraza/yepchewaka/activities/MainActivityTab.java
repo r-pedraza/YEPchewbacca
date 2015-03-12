@@ -66,7 +66,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.icon_yep);
+        getSupportActionBar().setIcon(R.drawable.icon_yep_push);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(208, 45, 45)));
 
         setContentView(R.layout.activity_main_activity_tab);
