@@ -68,7 +68,8 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setIcon(R.drawable.icon_yep);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(208, 45, 45)));
-
+        getSupportActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.rgb(208, 45, 45)));
+        
         setContentView(R.layout.activity_main_activity_tab);
         ParseUser currenUser = ParseUser.getCurrentUser();
         if(currenUser==null){
