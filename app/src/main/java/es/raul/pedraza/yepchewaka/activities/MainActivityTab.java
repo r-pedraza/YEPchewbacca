@@ -69,7 +69,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         getSupportActionBar().setIcon(R.drawable.icon_yep);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(208, 45, 45)));
         getSupportActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.rgb(208, 45, 45)));
-        
+
         setContentView(R.layout.activity_main_activity_tab);
         ParseUser currenUser = ParseUser.getCurrentUser();
         if(currenUser==null){
@@ -276,6 +276,7 @@ public class MainActivityTab extends ActionBarActivity implements ActionBar.TabL
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
+
     }
 
     @Override
